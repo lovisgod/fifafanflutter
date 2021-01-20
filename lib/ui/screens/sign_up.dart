@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:fifafan/data/fifafancontroller.dart';
+import 'package:fifafan/network/error.dart';
+import 'package:fifafan/network/errorHelper.dart';
+import 'package:fifafan/ui/views/flushAlert.dart';
 
 class SignUp extends StatelessWidget {
+  final FifaController controller = Get.put(FifaController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +42,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpFullNameTextController,
                     decoration: InputDecoration(
                       hintText: 'Full name',
                       // border: InputBorder.none,
@@ -55,7 +60,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpUserNameTextController,
                     decoration: InputDecoration(
                       hintText: 'User name',
                       // border: InputBorder.none,
@@ -73,7 +78,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpClubTextController,
                     decoration: InputDecoration(
                       hintText: 'Club',
                       // border: InputBorder.none,
@@ -100,7 +105,9 @@ class SignUp extends StatelessWidget {
                         child: new Text(value),
                       );
                     }).toList(),
-                    onChanged: (_) {},
+                    onChanged: (value) {
+                      controller.role = value;
+                    },
                   ),
                 ),
               ),
@@ -110,7 +117,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpPhoneNumberTextController,
                     decoration: InputDecoration(
                       hintText: 'Phone Number',
                       // border: InputBorder.none,
@@ -128,7 +135,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpEmailTextController,
                     decoration: InputDecoration(
                       hintText: 'Email Adress',
                       // border: InputBorder.none,
@@ -146,7 +153,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpPasswordTextController,
                     decoration: InputDecoration(
                       hintText: 'Password',
                       // border: InputBorder.none,
@@ -166,7 +173,7 @@ class SignUp extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.signUpConfirmPasswordTextController,
                     decoration: InputDecoration(
                       hintText: 'confirm password',
                       // border: InputBorder.none,
@@ -236,5 +243,39 @@ class SignUp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  handleSignUp(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      content: new Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(
+              margin: EdgeInsets.only(left: 7), child: Text("Please wait...")),
+        ],
+      ),
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+    var res = controller.signUpApi();
+    if (res is ErrorType) {
+      Navigator.pop(context);
+      FlushAlert.show(
+        context: context,
+        message: errorTypeToString(res),
+        isError: true,
+      );
+    } else {
+      FlushAlert.show(
+        context: context,
+        message: 'SignUp is successful',
+        isError: false,
+      );
+    }
   }
 }

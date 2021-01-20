@@ -1,7 +1,12 @@
+import 'package:fifafan/data/fifafancontroller.dart';
+import 'package:fifafan/network/error.dart';
+import 'package:fifafan/network/errorHelper.dart';
+import 'package:fifafan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
+  final FifaController controller = Get.put(FifaController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +42,9 @@ class Login extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.loginEmailTextController,
                     decoration: InputDecoration(
-                      hintText: 'Email Adress',
+                      hintText: 'Email Adressnull',
                       // border: InputBorder.none,
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFFE7E9ED)),
@@ -55,7 +60,7 @@ class Login extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: TextField(
-                    controller: null,
+                    controller: controller.loginPasswordTextController,
                     decoration: InputDecoration(
                       hintText: 'Password',
                       // border: InputBorder.none,
@@ -120,7 +125,7 @@ class Login extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Get.offNamed('/auth/sign_up');
+                      Get.toNamed('/auth/sign_up');
                     },
                     child: Padding(
                         padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -146,5 +151,36 @@ class Login extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  handleLogin(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      content: new Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(
+              margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+        ],
+      ),
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+    var res = controller.loginApi();
+    if (res is ErrorType) {
+      Navigator.pop(context);
+      FlushAlert.show(
+        context: context,
+        message: errorTypeToString(res),
+        isError: true,
+      );
+    } else {
+      String token = res['data']['token'];
+      controller.saveToken(token);
+    }
   }
 }
