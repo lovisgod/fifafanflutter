@@ -97,16 +97,16 @@ class SignUp extends StatelessWidget {
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: DropdownButton<String>(
                     isExpanded: true,
-                    hint: Text('Role'),
+                    hint: Obx(() => Text("${controller.role}")),
                     items:
-                        <String>['Player', 'Fan', 'Coach'].map((String value) {
+                        <String>['player', 'fan', 'coach'].map((String value) {
                       return new DropdownMenuItem<String>(
                         value: value,
                         child: new Text(value),
                       );
                     }).toList(),
                     onChanged: (value) {
-                      controller.role = value;
+                      controller.role = value as RxString;
                     },
                   ),
                 ),
@@ -218,7 +218,9 @@ class SignUp extends StatelessWidget {
               Row(children: <Widget>[
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      handleSignUp(context);
+                    },
                     child: Padding(
                         padding: EdgeInsets.only(left: 20.0, right: 20.0),
                         child: Container(
@@ -245,7 +247,7 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  handleSignUp(BuildContext context) {
+  handleSignUp(BuildContext context) async {
     AlertDialog alert = AlertDialog(
       content: new Row(
         children: [
@@ -262,7 +264,7 @@ class SignUp extends StatelessWidget {
         return alert;
       },
     );
-    var res = controller.signUpApi();
+    var res = await controller.signUpApi();
     if (res is ErrorType) {
       Navigator.pop(context);
       FlushAlert.show(
@@ -276,6 +278,7 @@ class SignUp extends StatelessWidget {
         message: 'SignUp is successful',
         isError: false,
       );
+      Get.offNamed('/auth/login');
     }
   }
 }

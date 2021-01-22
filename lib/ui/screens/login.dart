@@ -104,7 +104,9 @@ class Login extends StatelessWidget {
               SizedBox(height: 20.0),
               Row(children: <Widget>[
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    handleLogin(context);
+                  },
                   child: Padding(
                       padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       child: Container(
@@ -153,7 +155,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  handleLogin(BuildContext context) {
+  handleLogin(BuildContext context) async {
     AlertDialog alert = AlertDialog(
       content: new Row(
         children: [
@@ -170,17 +172,23 @@ class Login extends StatelessWidget {
         return alert;
       },
     );
-    var res = controller.loginApi();
-    if (res is ErrorType) {
+    try {
+      var res = await controller.loginApi();
+      if (res is ErrorType) {
+        Navigator.pop(context);
+        FlushAlert.show(
+          context: context,
+          message: errorTypeToString(res),
+          isError: true,
+        );
+      } else {
+        String token = res['data']['token'];
+        print(token);
+        controller.saveToken(token);
+      }
+    } catch (error) {
+      print(error);
       Navigator.pop(context);
-      FlushAlert.show(
-        context: context,
-        message: errorTypeToString(res),
-        isError: true,
-      );
-    } else {
-      String token = res['data']['token'];
-      controller.saveToken(token);
     }
   }
 }

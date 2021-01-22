@@ -38,6 +38,7 @@ dev_dependencies:
   flushbar: 1.10.1
   progress_dialog: 1.2.3
   shared_preferences: ^0.5.12+4
+  get_storage:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

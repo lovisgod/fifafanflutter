@@ -19,33 +19,42 @@ class FifaService {
         return false;
       });
   static Dio dio = Dio(options);
-
   //Sign IN a User
   static dynamic loginUser({
     @required String email,
     @required String password,
   }) async {
     var uri = Endpoint.login;
-    print(Endpoint.baseUrl);
-    print(uri);
-    print(email);
+//    print(Endpoint.baseUrl);
+//    print(uri);
+//    print(email);
+    print(dio.options.baseUrl);
+
+    await dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (RequestOptions options) {
+        print(options.path);
+        return options;
+      },
+    ));
 
     try {
       Response response = await dio.post(uri, data: {
-        "phone": email,
+        "email": email,
         "password": password,
       });
 
       print(response.statusCode);
-      print(response.data);
+      print(response);
 
-      dynamic res = json.decode(response.data);
-      print(res);
+//      dynamic res = json.decode(response.data);
+//      print(res);
 
       if (response == null) return ErrorType.generic;
-      if (res['code'] == 500) return ErrorType.generic;
-      if (res['code'] == 401) return ErrorType.invalid_credentials;
-      if (res['code'] == 200) return json.decode(response.data);
+      if (response.statusCode == 404) return ErrorType.generic;
+      if (response.statusCode == 400) return ErrorType.invalid_credentials;
+      if (response.statusCode == 500) return ErrorType.generic;
+      if (response.statusCode == 401) return ErrorType.invalid_credentials;
+      if (response.statusCode == 200) return json.decode(response.data);
 
       // }
     } on DioError catch (exception) {
@@ -74,32 +83,31 @@ class FifaService {
     var uri = Endpoint.register;
     print(Endpoint.baseUrl);
     print(uri);
-    print(email);
+    print(role);
 
     if (password != confirmPassword) {
       return ErrorType.password_dont_match;
     } else {
       try {
         Response response = await dio.post(uri, data: {
-          "phone": email,
+          "email": email,
           "password": password,
-          "phonenumber": phonenumber,
-          "fullname": fullname,
+          "phone": phonenumber,
+          "name": fullname,
           "username": username,
-          "role": role,
+          "role": "user",
+          "status": role,
           "club": club,
         });
 
         print(response.statusCode);
-        print(response.data);
-
-        dynamic res = json.decode(response.data);
-        print(res);
-
         if (response == null) return ErrorType.generic;
-        if (res['code'] == 500) return ErrorType.generic;
-        if (res['code'] == 401) return ErrorType.invalid_credentials;
-        if (res['code'] == 200) return json.decode(response.data);
+        if (response.statusCode == 404) return ErrorType.generic;
+        if (response.statusCode >= 400 && response.statusCode < 409)
+          return ErrorType.invalid_credentials;
+        if (response.statusCode == 500) return ErrorType.generic;
+        if (response.statusCode == 409) return ErrorType.user_already_exists;
+        if (response.statusCode == 200) return json.decode(response.data);
 
         // }
       } on DioError catch (exception) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './../network/service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 
 class FifaController extends GetxController {
   TextEditingController loginEmailTextController;
@@ -14,9 +15,9 @@ class FifaController extends GetxController {
   TextEditingController signUpUserNameTextController;
   TextEditingController signUpPhoneNumberTextController;
   TextEditingController signUpConfirmPasswordTextController;
-  String role;
+  var role = 'fan'.obs;
 
-  SharedPreferences prefs;
+  var prefs = GetStorage();
   var token = ''.obs;
 
   @override
@@ -32,11 +33,9 @@ class FifaController extends GetxController {
     signUpPhoneNumberTextController = TextEditingController();
     signUpConfirmPasswordTextController = TextEditingController();
 
-    prefs = SharedPreferences.getInstance() as SharedPreferences;
+    prefs = GetStorage();
 
-    token = prefs.getString('token') as RxString;
-
-    role = '';
+    token = prefs.read('token') as RxString;
 
     super.onInit();
   }
@@ -56,17 +55,17 @@ class FifaController extends GetxController {
         username: signUpUserNameTextController.text.toString(),
         phonenumber: signUpPhoneNumberTextController.text.toString(),
         club: signUpClubTextController.text.toString(),
-        role: role);
+        role: role.toString());
   }
 
   void saveToken(String incomingToken) {
-    prefs.setString('token', incomingToken);
+    prefs.write('token', incomingToken);
     token = incomingToken as RxString;
   }
 
   RxString getToken() {
-    if (!prefs.getString('token').isNullOrBlank) {
-      token = prefs.getString('token') as RxString;
+    if (!prefs.read('token').isNullOrBlank) {
+      token = prefs.read('token') as RxString;
     }
     return token;
   }
