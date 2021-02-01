@@ -1,3 +1,5 @@
+import 'package:fifafan/domain/post.dart';
+import 'package:fifafan/network/error.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './../network/service.dart';
@@ -20,6 +22,7 @@ class FifaController extends GetxController {
   var prefs = GetStorage();
   var token = '';
   var userToken = '';
+  var postListData = List<Post>().obs;
 
   @override
   void onInit() {
@@ -57,6 +60,20 @@ class FifaController extends GetxController {
         phonenumber: signUpPhoneNumberTextController.text.toString(),
         club: signUpClubTextController.text.toString(),
         role: role.toString());
+  }
+
+  getAllPosts() async {
+    Future.delayed(
+        Duration.zero,
+        () => Get.dialog(Center(child: CircularProgressIndicator()),
+            barrierDismissible: false));
+    var response = await FifaService.getPosts();
+    if (response is ErrorType) {
+      Get.back();
+    } else {
+      postListData.value = response['data'];
+      Get.back();
+    }
   }
 
   void saveToken(String incomingToken) {

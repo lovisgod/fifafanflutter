@@ -1,44 +1,44 @@
 class Post {
-  String id;
-  final String name;
-  final DateTime time;
-  final String message;
-  final String mediaUrl;
+  String uuid;
+  final String owner_name;
+  final DateTime createdAt;
+  final String post;
+  final String media;
   final int likes;
-  final int comments;
+  final int comment;
 
   Post({
-    this.mediaUrl,
-    this.name,
-    this.time,
-    this.message,
+    this.media,
+    this.owner_name,
+    this.createdAt,
+    this.post,
     this.likes,
-    this.comments,
+    this.comment,
   });
 
   Post.fromJson(Map<String, dynamic> json)
-      : id = json['_id'],
-        name = json['name'],
-        time = json['time'],
-        message = json['message'],
-        mediaUrl = json['file'],
+      : uuid = json['uuid'],
+        owner_name = json['name'],
+        createdAt = json['time'],
+        post = json['message'],
+        media = json['file'],
         likes = json['likes'],
-        comments = json['comments'];
+        comment = json['comment'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> map = Map<String, dynamic>();
-    map['name'] = name;
-    map['message'] = message;
-    map['time'] = time;
-    map['file'] = mediaUrl;
+    map['name'] = owner_name;
+    map['message'] = post;
+    map['time'] = createdAt;
+    map['file'] = media;
     map['likes'] = likes;
-    map['comments'] = comments;
-    if (id != null) {
-      map['id'] = id;
+    map['comment'] = comment;
+    if (uuid != null) {
+      map['uuid'] = uuid;
     }
     return map;
   }
 
   @override
-  String toString() => "Record<$name>";
+  String toString() => "Record<$owner_name>";
 }

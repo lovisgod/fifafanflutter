@@ -1,3 +1,4 @@
+import 'package:fifafan/ui/screens/post_page.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -32,11 +33,8 @@ class _FifaFanStateFulWidgetState extends State<FifaFanStateFulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    PostPage(),
     Text(
       'Profile',
       style: optionStyle,

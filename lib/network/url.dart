@@ -4,4 +4,5 @@ class Endpoint {
   //Auth
   static String login = "/auth/signin";
   static String register = 'auth/signup';
+  static String getposts = 'post/list-posts';
 }

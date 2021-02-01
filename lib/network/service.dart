@@ -5,8 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:fifafan/constants.dart';
 import 'error.dart';
 import 'url.dart';
+import 'package:get_storage/get_storage.dart';
 
 class FifaService {
+  static String getToken() {
+    var prefs = GetStorage();
+    var token = prefs.read('token');
+    debugPrint(token.toString());
+    return token.toString();
+  }
+
   static BaseOptions options = BaseOptions(
       baseUrl: Endpoint.baseUrl,
       responseType: ResponseType.plain,
@@ -120,6 +128,38 @@ class FifaService {
         } else {
           return ErrorType.generic;
         }
+      }
+    }
+  }
+
+  //Register a User
+  static dynamic getPosts() async {
+    var uri = Endpoint.getposts;
+    print(Endpoint.baseUrl);
+    print(uri);
+    try {
+      dio.options.headers['authorization'] = "Bearer " + getToken();
+      Response response = await dio.get(uri);
+
+      print(response.statusCode);
+      if (response == null) return ErrorType.generic;
+      if (response.statusCode == 404) return ErrorType.generic;
+      if (response.statusCode >= 400 && response.statusCode < 409)
+        return ErrorType.invalid_credentials;
+      if (response.statusCode == 500) return ErrorType.generic;
+      if (response.statusCode == 409) return ErrorType.user_already_exists;
+      if (response.statusCode == 200) return json.decode(response.data);
+
+      // }
+    } on DioError catch (exception) {
+      if (exception == null ||
+          exception.toString().contains('SocketException')) {
+        return ErrorType.network;
+      } else if (exception.type == DioErrorType.RECEIVE_TIMEOUT ||
+          exception.type == DioErrorType.CONNECT_TIMEOUT) {
+        return ErrorType.timeout;
+      } else {
+        return ErrorType.generic;
       }
     }
   }

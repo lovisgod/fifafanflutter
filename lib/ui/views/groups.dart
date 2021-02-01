@@ -27,7 +27,7 @@ class Groups extends StatelessWidget {
           child: ListView.builder(
               padding: EdgeInsets.only(left: 10.0),
               scrollDirection: Axis.horizontal,
-              itemCount: groups.length,
+              itemCount: 1,
               itemBuilder: (BuildContext context, int index) {
                 Group group = groups[index];
                 return GestureDetector(
