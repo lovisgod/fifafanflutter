@@ -18,7 +18,8 @@ class FifaController extends GetxController {
   var role = 'fan'.obs;
 
   var prefs = GetStorage();
-  var token = ''.obs;
+  var token = '';
+  var userToken = '';
 
   @override
   void onInit() {
@@ -35,7 +36,7 @@ class FifaController extends GetxController {
 
     prefs = GetStorage();
 
-    token = prefs.read('token') as RxString;
+    token = prefs.read('token');
 
     super.onInit();
   }
@@ -60,14 +61,15 @@ class FifaController extends GetxController {
 
   void saveToken(String incomingToken) {
     prefs.write('token', incomingToken);
-    token = incomingToken as RxString;
+    token = incomingToken;
   }
 
-  RxString getToken() {
-    if (!prefs.read('token').isNullOrBlank) {
-      token = prefs.read('token') as RxString;
+  String getToken() {
+    if (prefs.read('token').toString().isNotEmpty) {
+      token = prefs.read('token');
     }
-    return token;
+    debugPrint(token.toString());
+    return token.toString();
   }
 
   @override

@@ -185,6 +185,7 @@ class Login extends StatelessWidget {
         String token = res['data']['token'];
         print(token);
         controller.saveToken(token);
+        Get.toNamed('/homepage');
       }
     } catch (error) {
       print(error);

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fifafan/data/fifafancontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
@@ -30,11 +31,18 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
   }
 
   void navigateTO() {
-    Get.offNamed('/auth/login');
+    final FifaController controller = Get.put(FifaController());
+    var token = controller.getToken();
+    debugPrint(token);
+    if (token.isNotEmpty) {
+      Get.offNamed('homePage');
+    } else {
+      Get.offNamed('/auth/login');
+    }
   }
 
   _loadPage() async {
-    var _duration = Duration(seconds: 5);
+    var _duration = Duration(seconds: 3);
     return Timer(_duration, navigateTO);
   }
 }
