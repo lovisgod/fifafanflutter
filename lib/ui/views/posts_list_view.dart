@@ -1,11 +1,12 @@
 import 'package:fifafan/domain/groupModel.dart';
 import 'package:fifafan/domain/post.dart';
+import 'package:fifafan/domain/post_response_class.dart';
 import 'package:flutter/material.dart';
 import 'post_item.dart';
 import 'package:get/get.dart';
 
 class PostListView extends StatelessWidget {
-  final List<Post> posts;
+  final List<Data> posts;
 
   PostListView({this.posts});
 
@@ -31,7 +32,7 @@ class PostListView extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: this.posts != null ? this.posts.length : 2,
               itemBuilder: (BuildContext context, int index) {
-                Post post = posts[index];
+                Data post = posts[index];
                 return GestureDetector(
                   onTap: () {},
                   child: PostItemView(

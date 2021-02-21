@@ -4,8 +4,8 @@ class Post {
   final DateTime createdAt;
   final String post;
   final String media;
-  final int likes;
-  final int comment;
+  final List likes;
+  final List comment;
 
   Post({
     this.media,

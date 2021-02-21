@@ -1,6 +1,7 @@
 import 'package:fifafan/data/fifafancontroller.dart';
 import 'package:fifafan/network/error.dart';
 import 'package:fifafan/network/errorHelper.dart';
+import 'package:fifafan/ui/screens/home_page.dart';
 import 'package:fifafan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,13 +45,13 @@ class Login extends StatelessWidget {
                   child: TextField(
                     controller: controller.loginEmailTextController,
                     decoration: InputDecoration(
-                      hintText: 'Email Adressnull',
+                      hintText: 'Email Address',
                       // border: InputBorder.none,
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFFE7E9ED)),
                       ),
                     ),
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
               ),
@@ -185,7 +186,11 @@ class Login extends StatelessWidget {
         String token = res['data']['token'];
         print(token);
         controller.saveToken(token);
-        Get.toNamed('/homepage');
+//        Get.toNamed('/homepage');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Homepage()),
+        );
       }
     } catch (error) {
       print(error);

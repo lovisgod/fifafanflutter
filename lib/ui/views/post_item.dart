@@ -1,9 +1,10 @@
 import 'package:fifafan/domain/post.dart';
+import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/utils/timer.dart';
 import 'package:flutter/material.dart';
 
 class PostItemView extends StatefulWidget {
-  Post post;
+  Data post;
   PostItemView({this.post});
 
   @override
@@ -13,7 +14,7 @@ class PostItemView extends StatefulWidget {
 class _PostItemViewState extends State<PostItemView> {
   @override
   Widget build(BuildContext context) {
-    Post post = this.widget.post;
+    Data post = this.widget.post;
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(
@@ -48,12 +49,14 @@ class _PostItemViewState extends State<PostItemView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      post.owner_name.toString(),
+                      post.ownerName.toString(),
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      MyTimer().duration(post.createdAt).toString(),
+                      MyTimer()
+                          .duration(DateTime.parse(post.createdAt))
+                          .toString(),
                       style: TextStyle(
                           color: Color(0xFFC4C4C4),
                           fontWeight: FontWeight.normal),
@@ -103,7 +106,8 @@ class _PostItemViewState extends State<PostItemView> {
                 Padding(
                   padding: EdgeInsets.only(left: 10.0, right: 10.0),
                   child: Text(
-                    '${post.likes} likes',
+//                    '${post.likes.length} likes',
+                    '0 likes',
                     style: TextStyle(
                         color: Colors.black87, fontWeight: FontWeight.normal),
                   ),

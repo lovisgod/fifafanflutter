@@ -1,7 +1,7 @@
 import 'package:fifafan/data/fifafancontroller.dart';
+import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/ui/views/groups.dart';
 import 'package:fifafan/ui/views/post_item.dart';
-import 'package:fifafan/ui/views/posts_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fifafan/domain/post.dart';
@@ -10,6 +10,7 @@ class PostPage extends StatelessWidget {
   final FifaController controller = Get.put(FifaController());
   @override
   Widget build(BuildContext context) {
+    controller.getAllPosts();
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -40,7 +41,8 @@ class PostPage extends StatelessWidget {
                               ? this.controller.postListData.length
                               : 2,
                           itemBuilder: (BuildContext context, int index) {
-                            Post post = this.controller.postListData[index];
+                            Data post = this.controller.postListData[index];
+                            print(post);
                             return GestureDetector(
                               onTap: () {},
                               child: PostItemView(

@@ -7,11 +7,15 @@ import 'error.dart';
 import 'url.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+
 class FifaService {
   static String getToken() {
     var prefs = GetStorage();
     var token = prefs.read('token');
-    debugPrint(token.toString());
     return token.toString();
   }
 
@@ -33,9 +37,6 @@ class FifaService {
     @required String password,
   }) async {
     var uri = Endpoint.login;
-//    print(Endpoint.baseUrl);
-//    print(uri);
-//    print(email);
     print(dio.options.baseUrl);
 
     await dio.interceptors.add(InterceptorsWrapper(
@@ -135,13 +136,14 @@ class FifaService {
   //Register a User
   static dynamic getPosts() async {
     var uri = Endpoint.getposts;
-    print(Endpoint.baseUrl);
-    print(uri);
+//    print(Endpoint.baseUrl);
+//    print(uri);
     try {
-      dio.options.headers['authorization'] = "Bearer " + getToken();
-      Response response = await dio.get(uri);
-
-      print(response.statusCode);
+      var token = await getToken();
+//      print("this is $token");
+      dio.options.headers['Authorization'] = "Bearer " + token;
+      print(Endpoint.baseUrl + Endpoint.getposts);
+      final response = await dio.get(uri);
       if (response == null) return ErrorType.generic;
       if (response.statusCode == 404) return ErrorType.generic;
       if (response.statusCode >= 400 && response.statusCode < 409)

@@ -1,9 +1,10 @@
+import 'package:fifafan/domain/PostList.dart';
 import 'package:fifafan/domain/post.dart';
+import 'package:fifafan/domain/post_response_class.dart' as postres;
 import 'package:fifafan/network/error.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './../network/service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get_storage/get_storage.dart';
 
 class FifaController extends GetxController {
@@ -22,7 +23,7 @@ class FifaController extends GetxController {
   var prefs = GetStorage();
   var token = '';
   var userToken = '';
-  var postListData = List<Post>().obs;
+  var postListData = List<postres.Data>().obs;
 
   @override
   void onInit() {
@@ -62,16 +63,23 @@ class FifaController extends GetxController {
         role: role.toString());
   }
 
-  getAllPosts() async {
+  void getAllPosts() async {
     Future.delayed(
         Duration.zero,
         () => Get.dialog(Center(child: CircularProgressIndicator()),
             barrierDismissible: false));
-    var response = await FifaService.getPosts();
+    Map<String, dynamic> response = await FifaService.getPosts();
     if (response is ErrorType) {
+      print('error is here');
       Get.back();
     } else {
-      postListData.value = response['data'];
+      List<postres.Data> listofPosts = List<postres.Data>();
+      if (response['data'] == null) {
+        listofPosts = [];
+      } else {
+        listofPosts = postres.PostResponseClass.fromJson(response).data;
+      }
+      postListData.value = listofPosts;
       Get.back();
     }
   }
@@ -91,11 +99,11 @@ class FifaController extends GetxController {
 
   @override
   void onClose() {
-    loginPasswordTextController.dispose();
-    loginEmailTextController.dispose();
-
-    signUpEmailTextController.dispose();
-    signUpPasswordTextController.dispose();
+//    loginPasswordTextController.dispose();
+//    loginEmailTextController.dispose();
+//
+//    signUpEmailTextController.dispose();
+//    signUpPasswordTextController.dispose();
     super.onClose();
   }
 }
