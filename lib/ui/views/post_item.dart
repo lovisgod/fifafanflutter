@@ -23,6 +23,8 @@ class _PostItemViewState extends State<PostItemView> {
           color: Colors.white,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -77,13 +79,16 @@ class _PostItemViewState extends State<PostItemView> {
               ),
             ),
             SizedBox(height: 15.0),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Image.network(
-                post.media.toString(),
-                height: 200.0,
-                width: 300.0,
-                fit: BoxFit.cover,
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: Image.network(
+                  post.media.toString(),
+                  height: 200.0,
+                  width: 300.0,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(height: 10.0),
@@ -99,6 +104,20 @@ class _PostItemViewState extends State<PostItemView> {
                       child: Icon(
                         Icons.favorite,
                         color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 35.0,
+                      height: 35.0,
+                      child: Icon(
+                        Icons.add_comment,
+                        color: Colors.blue,
                       ),
                     ),
                   ),

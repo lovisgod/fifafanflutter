@@ -88,15 +88,11 @@ class Data {
     _media = json["media"];
     if (json["comment"] != null) {
       _comment = [];
-      json["comment"].forEach((v) {
-        _comment.add("");
-      });
+      json["comment"].forEach((v) {});
     }
     if (json["likes"] != null) {
       _likes = [];
-      json["likes"].forEach((v) {
-        _likes.add("");
-      });
+      json["likes"].forEach((v) {});
     }
     _createdAt = json["createdAt"];
   }
