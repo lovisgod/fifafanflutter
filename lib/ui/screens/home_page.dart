@@ -1,4 +1,7 @@
+import 'package:fifafan/ui/screens/people.dart';
 import 'package:fifafan/ui/screens/post_page.dart';
+import 'package:fifafan/ui/screens/profile.dart';
+import 'package:fifafan/ui/screens/groups.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -35,18 +38,9 @@ class _FifaFanStateFulWidgetState extends State<FifaFanStateFulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     PostPage(),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-    Text(
-      'People',
-      style: optionStyle,
-    ),
-    Text(
-      'Groups',
-      style: optionStyle,
-    ),
+    Profile(),
+    People(),
+    GroupsListPage()
   ];
 
   void _onItemTapped(int index) {
