@@ -15,6 +15,7 @@ class _ProfileState extends State<Profile> {
   PostListBloc _bloc = PostListBloc();
   @override
   Widget build(BuildContext context) {
+    _bloc.getPosts();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -36,7 +37,7 @@ class _ProfileState extends State<Profile> {
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.all(10.0),
@@ -65,14 +66,18 @@ class _ProfileState extends State<Profile> {
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         'Ayoluwa olosunde',
                         style: TextStyle(
                             fontSize: 18.0,
-                            color: Colors.white,
+                            color: Colors.black,
                             letterSpacing: 1.2),
                         textAlign: TextAlign.left,
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Expanded(
                         child: Container(
@@ -80,7 +85,7 @@ class _ProfileState extends State<Profile> {
                             'Arsenal Fan',
                             style: TextStyle(
                                 fontSize: 10.0,
-                                color: Colors.white,
+                                color: Colors.black,
                                 letterSpacing: 1.2),
                             textAlign: TextAlign.left,
                           ),
