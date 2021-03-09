@@ -43,7 +43,7 @@ class Groups extends StatelessWidget {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10.0),
                             border: Border.all(
-                                width: 2.0,
+                                width: 1.0,
                                 color: Theme.of(context).primaryColor),
                             boxShadow: [
                               BoxShadow(

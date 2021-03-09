@@ -16,10 +16,32 @@ class FifaProvider {
     return responseJson;
   }
 
+  Future getUserPosts() async {
+    var responseJson;
+    try {
+      final response = await ApiClient.getUserPosts();
+      responseJson = ResponseHandler().response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   Future getGroups() async {
     var responseJson;
     try {
       final response = await ApiClient.getGroups();
+      responseJson = ResponseHandler().response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future getUser() async {
+    var responseJson;
+    try {
+      final response = await ApiClient.getUser();
       responseJson = ResponseHandler().response(response);
     } on SocketException {
       throw FetchDataException('No Internet connection');

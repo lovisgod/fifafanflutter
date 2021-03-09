@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
+import 'package:fifafan/domain/user_profile.dart';
 import 'package:fifafan/network/networking/ResponseHelper.dart';
 import 'package:fifafan/repository/podcatListRepository.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,16 +12,22 @@ class GroupListBloc {
   StreamController groupListController =
       StreamController<Response<GroupListResponse>>();
 
+  StreamController userProfileController = StreamController<Response<User>>();
+
   StreamSink<Response<GroupListResponse>> get groupListSink =>
       groupListController.sink;
 
   Stream<Response<GroupListResponse>> get groupListStream =>
       groupListController.stream;
 
+  StreamSink<Response<User>> get userProfileSink => userProfileController.sink;
+
+  Stream<Response<User>> get userProfileStream => userProfileController.stream;
+
   GroupListBloc() {
-    groupListController = StreamController<Response<GroupListResponse>>();
+//    groupListController = StreamController<Response<GroupListResponse>>();
     _postListRepository = FifaRepository();
-    getGroups();
+//    getGroups();
   }
 
   getGroups() async {
@@ -35,7 +42,19 @@ class GroupListBloc {
     }
   }
 
+  getUser() async {
+    userProfileSink.add(Response.loading('Fetching user profile....'));
+    try {
+      User user = await _postListRepository.getUser();
+      userProfileSink.add(Response.completed(user));
+    } catch (e) {
+      userProfileSink.add(Response.error(e.toString()));
+      print(e);
+    }
+  }
+
   dispose() {
     groupListController?.close();
+    userProfileController?.close();
   }
 }

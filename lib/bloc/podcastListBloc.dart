@@ -16,15 +16,24 @@ class PostListBloc {
   Stream<Response<PostResponseClass>> get postListStream =>
       postListController.stream;
 
+  StreamController userPostListController =
+      StreamController<Response<PostResponseClass>>();
+
+  StreamSink<Response<PostResponseClass>> get getUserPostSink =>
+      userPostListController.sink;
+
+  Stream<Response<PostResponseClass>> get userPostListStream =>
+      userPostListController.stream;
+
   PodcastListBloc() {
-    postListController = StreamController<Response<PostResponseClass>>();
+//    postListController = StreamController<Response<PostResponseClass>>();
     _postListRepository = FifaRepository();
-    getPosts();
+//    getPosts();
   }
 
   getPosts() async {
     debugPrint("this is getting here here here");
-    getPostSink.add(Response.loading('Getting Podcast list.....'));
+    getPostSink.add(Response.loading('Getting Post list.....'));
     try {
       PostResponseClass postResponseClass =
           await _postListRepository.getPosts();
@@ -35,7 +44,21 @@ class PostListBloc {
     }
   }
 
+  getUserPosts() async {
+    debugPrint("this is getting here here here");
+    getUserPostSink.add(Response.loading('Getting User post list.....'));
+    try {
+      PostResponseClass postResponseClass =
+          await _postListRepository.getUserPosts();
+      getUserPostSink.add(Response.completed(postResponseClass));
+    } catch (e) {
+      getPostSink.add(Response.error(e.toString()));
+      print(e);
+    }
+  }
+
   dispose() {
     postListController?.close();
+    userPostListController?.close();
   }
 }

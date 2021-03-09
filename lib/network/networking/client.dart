@@ -14,8 +14,18 @@ class ApiClient {
         headers: {"Authorization": "Bearer ${getToken()}"});
   }
 
+  static Future<http.Response> getUserPosts() {
+    return http.get(Endpoint.baseUrl + Endpoint.getUserposts,
+        headers: {"Authorization": "Bearer ${getToken()}"});
+  }
+
   static Future<http.Response> getGroups() {
     return http.get(Endpoint.baseUrl + Endpoint.getGroups,
+        headers: {"Authorization": "Bearer ${getToken()}"});
+  }
+
+  static Future<http.Response> getUser() {
+    return http.get(Endpoint.baseUrl + Endpoint.getUser,
         headers: {"Authorization": "Bearer ${getToken()}"});
   }
 }

@@ -12,9 +12,11 @@ class PostItemView extends StatefulWidget {
 }
 
 class _PostItemViewState extends State<PostItemView> {
+  int likes = 0;
   @override
   Widget build(BuildContext context) {
     Data post = this.widget.post;
+    likes = post.likes.length;
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(
@@ -97,12 +99,30 @@ class _PostItemViewState extends State<PostItemView> {
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 10.0),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      increaseCount();
+                    },
                     child: Container(
                       width: 35.0,
                       height: 35.0,
                       child: Icon(
-                        Icons.favorite,
+                        Icons.thumb_up,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      decreaseCount();
+                    },
+                    child: Container(
+                      width: 35.0,
+                      height: 35.0,
+                      child: Icon(
+                        Icons.thumb_down,
                         color: Colors.grey,
                       ),
                     ),
@@ -125,8 +145,8 @@ class _PostItemViewState extends State<PostItemView> {
                 Padding(
                   padding: EdgeInsets.only(left: 10.0, right: 10.0),
                   child: Text(
-//                    '${post.likes.length} likes',
-                    '0 likes',
+                    '${this.likes} likes',
+//                    '0 likes',
                     style: TextStyle(
                         color: Colors.black87, fontWeight: FontWeight.normal),
                   ),
@@ -137,5 +157,19 @@ class _PostItemViewState extends State<PostItemView> {
         ),
       ),
     );
+  }
+
+  increaseCount() {
+    debugPrint('getting here');
+    this.setState(() {
+      likes += 1;
+    });
+    debugPrint("${this.likes}");
+  }
+
+  decreaseCount() {
+    this.setState(() {
+      likes -= 1;
+    });
   }
 }

@@ -71,7 +71,7 @@ class _PostPageState extends State<PostPage> {
 //                ),
 //              ),
               Container(
-                height: 410.0,
+                height: 400.0,
                 child: StreamBuilder<Response<PostResponseClass>>(
                   stream: _bloc.postListStream,
                   builder: (context, snapshot) {
