@@ -1,5 +1,6 @@
 import 'package:fifafan/bloc/groupListBloc.dart';
 import 'package:fifafan/domain/user_profile.dart';
+import 'package:fifafan/ui/screens/createPost.dart';
 import 'package:flutter/material.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
 import 'package:fifafan/domain/post_response_class.dart';
@@ -25,6 +26,10 @@ class _ProfileState extends State<Profile> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Add your onPressed code here!
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreatePost()),
+          );
         },
         child: Icon(Icons.create),
         backgroundColor: Theme.of(context).primaryColor,

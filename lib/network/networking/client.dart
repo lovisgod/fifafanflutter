@@ -28,4 +28,13 @@ class ApiClient {
     return http.get(Endpoint.baseUrl + Endpoint.getUser,
         headers: {"Authorization": "Bearer ${getToken()}"});
   }
+
+  static uploadImage(String name, String postBody) async {
+    var request = http.MultipartRequest(
+        'POST', Uri.parse(Endpoint.baseUrl + Endpoint.getUser));
+    request.files.add(await http.MultipartFile.fromPath('media', name));
+    request.headers['Authorization'] = '${getToken()}';
+    var res = await request.send();
+    return res.statusCode;
+  }
 }

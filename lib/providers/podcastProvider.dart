@@ -48,4 +48,16 @@ class FifaProvider {
     }
     return responseJson;
   }
+
+  uploadPosts(String name, String postBody) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.uploadImage(name, postBody);
+//      responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 }
