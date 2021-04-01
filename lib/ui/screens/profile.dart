@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
       body: Container(
         child: Column(
           children: <Widget>[
-            StreamBuilder<Response<User>>(
+            StreamBuilder<FifaResponseResponse<User>>(
                 stream: _groupListBloc.userProfileStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -134,7 +134,7 @@ class _ProfileState extends State<Profile> {
                 }),
             Expanded(
               child: Container(
-                child: StreamBuilder<Response<PostResponseClass>>(
+                child: StreamBuilder<FifaResponseResponse<PostResponseClass>>(
                   stream: _bloc.userPostListStream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {

@@ -53,7 +53,10 @@ class _FifaFanStateFulWidgetState extends State<FifaFanStateFulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: IndexedStack(
+          children:  _widgetOptions,
+          index: _selectedIndex,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,

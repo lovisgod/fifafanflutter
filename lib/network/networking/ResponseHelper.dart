@@ -1,11 +1,11 @@
-class Response<T> {
+class FifaResponseResponse<T> {
   Status status;
   T data;
   String message;
 
-  Response.loading(this.message) : status = Status.LOADING;
-  Response.completed(this.data) : status = Status.COMPLETED;
-  Response.error(this.message) : status = Status.ERROR;
+  FifaResponseResponse.loading(this.message) : status = Status.LOADING;
+  FifaResponseResponse.completed(this.data) : status = Status.COMPLETED;
+  FifaResponseResponse.error(this.message) : status = Status.ERROR;
 
   @override
   String toString() {

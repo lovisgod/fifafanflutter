@@ -8,4 +8,5 @@ class Endpoint {
   static String getUserposts = 'post/list-user-posts';
   static String getGroups = 'room/list-rooms';
   static String getUser = 'auth/me';
+  static String createPost = 'post/create-post';
 }

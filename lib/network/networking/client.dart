@@ -1,4 +1,5 @@
 import 'package:fifafan/network/url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_storage/get_storage.dart';
 
@@ -31,8 +32,9 @@ class ApiClient {
 
   static uploadImage(String name, String postBody) async {
     var request = http.MultipartRequest(
-        'POST', Uri.parse(Endpoint.baseUrl + Endpoint.getUser));
-    request.files.add(await http.MultipartFile.fromPath('media', name));
+        'POST', Uri.parse(Endpoint.baseUrl + Endpoint.createPost));
+    request.files.add(await http.MultipartFile.fromPath('file', name));
+    request.fields['post'] = postBody;
     request.headers['Authorization'] = '${getToken()}';
     var res = await request.send();
     return res.statusCode;

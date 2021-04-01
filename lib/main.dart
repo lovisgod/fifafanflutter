@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Fifafans',
       defaultTransition: Transition.rightToLeft,
-      getPages: Router.route,
+      getPages: FifanRouter.route,
       initialRoute: '/splash',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

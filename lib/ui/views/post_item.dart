@@ -89,7 +89,7 @@ class _PostItemViewState extends State<PostItemView> {
                   post.media.toString(),
                   height: 200.0,
                   width: 300.0,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),

@@ -32,6 +32,7 @@ class FifaRepository {
     Get.dialog(Center(child: CircularProgressIndicator()),
         barrierDismissible: false);
     final response = await provider.uploadPosts(name, postBody);
+    debugPrint(response.toString());
     return response;
   }
 }

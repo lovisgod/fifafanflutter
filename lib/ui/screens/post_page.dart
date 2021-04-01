@@ -28,7 +28,7 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          StreamBuilder<Response<GroupListResponse>>(
+          StreamBuilder<FifaResponseResponse<GroupListResponse>>(
             stream: groupListBloc.groupListStream,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -72,7 +72,7 @@ class _PostPageState extends State<PostPage> {
 //              ),
               Container(
                 height: 400.0,
-                child: StreamBuilder<Response<PostResponseClass>>(
+                child: StreamBuilder<FifaResponseResponse<PostResponseClass>>(
                   stream: _bloc.postListStream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {

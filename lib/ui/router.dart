@@ -4,7 +4,7 @@ import 'package:fifafan/ui/screens/sign_up.dart';
 import 'package:fifafan/ui/screens/splash_screen.dart';
 import 'package:get/get.dart';
 
-class Router {
+class FifanRouter {
   static final route = [
     GetPage(
       name: '/splash',

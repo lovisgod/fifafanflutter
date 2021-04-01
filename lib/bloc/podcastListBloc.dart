@@ -8,21 +8,21 @@ import 'package:flutter/cupertino.dart';
 class PostListBloc {
   FifaRepository _postListRepository = FifaRepository();
   StreamController postListController =
-      StreamController<Response<PostResponseClass>>();
+      StreamController<FifaResponseResponse<PostResponseClass>>();
 
-  StreamSink<Response<PostResponseClass>> get getPostSink =>
+  StreamSink<FifaResponseResponse<PostResponseClass>> get getPostSink =>
       postListController.sink;
 
-  Stream<Response<PostResponseClass>> get postListStream =>
+  Stream<FifaResponseResponse<PostResponseClass>> get postListStream =>
       postListController.stream;
 
   StreamController userPostListController =
-      StreamController<Response<PostResponseClass>>();
+      StreamController<FifaResponseResponse<PostResponseClass>>();
 
-  StreamSink<Response<PostResponseClass>> get getUserPostSink =>
+  StreamSink<FifaResponseResponse<PostResponseClass>> get getUserPostSink =>
       userPostListController.sink;
 
-  Stream<Response<PostResponseClass>> get userPostListStream =>
+  Stream<FifaResponseResponse<PostResponseClass>> get userPostListStream =>
       userPostListController.stream;
 
   PodcastListBloc() {
@@ -33,26 +33,26 @@ class PostListBloc {
 
   getPosts() async {
     debugPrint("this is getting here here here");
-    getPostSink.add(Response.loading('Getting Post list.....'));
+    getPostSink.add(FifaResponseResponse.loading('Getting Post list.....'));
     try {
       PostResponseClass postResponseClass =
           await _postListRepository.getPosts();
-      getPostSink.add(Response.completed(postResponseClass));
+      getPostSink.add(FifaResponseResponse.completed(postResponseClass));
     } catch (e) {
-      getPostSink.add(Response.error(e.toString()));
+      getPostSink.add(FifaResponseResponse.error(e.toString()));
       print(e);
     }
   }
 
   getUserPosts() async {
     debugPrint("this is getting here here here");
-    getUserPostSink.add(Response.loading('Getting User post list.....'));
+    getUserPostSink.add(FifaResponseResponse.loading('Getting User post list.....'));
     try {
       PostResponseClass postResponseClass =
           await _postListRepository.getUserPosts();
-      getUserPostSink.add(Response.completed(postResponseClass));
+      getUserPostSink.add(FifaResponseResponse.completed(postResponseClass));
     } catch (e) {
-      getPostSink.add(Response.error(e.toString()));
+      getPostSink.add(FifaResponseResponse.error(e.toString()));
       print(e);
     }
   }

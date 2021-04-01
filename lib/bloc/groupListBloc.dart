@@ -10,19 +10,19 @@ class GroupListBloc {
   FifaRepository _postListRepository = FifaRepository();
 
   StreamController groupListController =
-      StreamController<Response<GroupListResponse>>();
+      StreamController<FifaResponseResponse<GroupListResponse>>();
 
-  StreamController userProfileController = StreamController<Response<User>>();
+  StreamController userProfileController = StreamController<FifaResponseResponse<User>>();
 
-  StreamSink<Response<GroupListResponse>> get groupListSink =>
+  StreamSink<FifaResponseResponse<GroupListResponse>> get groupListSink =>
       groupListController.sink;
 
-  Stream<Response<GroupListResponse>> get groupListStream =>
+  Stream<FifaResponseResponse<GroupListResponse>> get groupListStream =>
       groupListController.stream;
 
-  StreamSink<Response<User>> get userProfileSink => userProfileController.sink;
+  StreamSink<FifaResponseResponse<User>> get userProfileSink => userProfileController.sink;
 
-  Stream<Response<User>> get userProfileStream => userProfileController.stream;
+  Stream<FifaResponseResponse<User>> get userProfileStream => userProfileController.stream;
 
   GroupListBloc() {
 //    groupListController = StreamController<Response<GroupListResponse>>();
@@ -31,24 +31,24 @@ class GroupListBloc {
   }
 
   getGroups() async {
-    groupListSink.add(Response.loading('Getting groups list.....'));
+    groupListSink.add(FifaResponseResponse.loading('Getting groups list.....'));
     try {
       GroupListResponse groupListResponse =
           await _postListRepository.getGroups();
-      groupListSink.add(Response.completed(groupListResponse));
+      groupListSink.add(FifaResponseResponse.completed(groupListResponse));
     } catch (e) {
-      groupListSink.add(Response.error(e.toString()));
+      groupListSink.add(FifaResponseResponse.error(e.toString()));
       print(e);
     }
   }
 
   getUser() async {
-    userProfileSink.add(Response.loading('Fetching user profile....'));
+    userProfileSink.add(FifaResponseResponse.loading('Fetching user profile....'));
     try {
       User user = await _postListRepository.getUser();
-      userProfileSink.add(Response.completed(user));
+      userProfileSink.add(FifaResponseResponse.completed(user));
     } catch (e) {
-      userProfileSink.add(Response.error(e.toString()));
+      userProfileSink.add(FifaResponseResponse.error(e.toString()));
       print(e);
     }
   }
