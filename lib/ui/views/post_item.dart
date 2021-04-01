@@ -1,5 +1,6 @@
 import 'package:fifafan/domain/post.dart';
 import 'package:fifafan/domain/post_response_class.dart';
+import 'package:fifafan/ui/screens/viewUserProfile.dart';
 import 'package:fifafan/utils/timer.dart';
 import 'package:flutter/material.dart';
 
@@ -52,10 +53,18 @@ class _PostItemViewState extends State<PostItemView> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      post.ownerName.toString(),
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ViewUserProfile()),
+                        );
+                      },
+                      child: Text(
+                        post.ownerName.toString(),
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Text(
                       MyTimer()
