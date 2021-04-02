@@ -1,5 +1,6 @@
 import 'package:fifafan/bloc/groupListBloc.dart';
 import 'package:fifafan/domain/user_profile.dart';
+import 'package:fifafan/domain/view_user_response.dart';
 import 'package:flutter/material.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
 import 'package:fifafan/domain/post_response_class.dart';
@@ -37,7 +38,7 @@ class _UserProfileState extends State<ViewUserProfile> {
       body: Container(
         child: Column(
           children: <Widget>[
-            StreamBuilder<FifaResponseResponse<User>>(
+            StreamBuilder<FifaResponseResponse<ViewdUser>>(
                 stream: _groupListBloc.viewUserProfileStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -48,6 +49,7 @@ class _UserProfileState extends State<ViewUserProfile> {
 //                        );
                         break;
                       case Status.COMPLETED:
+                        print(snapshot.data.data);
                         return Container(
                           height: 120.0,
                           width: MediaQuery.of(context).size.width,
@@ -172,8 +174,8 @@ class _UserProfileState extends State<ViewUserProfile> {
                 }),
             Expanded(
               child: Container(
-                child: StreamBuilder<FifaResponseResponse<PostResponseClass>>(
-                  stream: _bloc.userPostListStream,
+                child: StreamBuilder<FifaResponseResponse<List<Posts>>>(
+                  stream: _groupListBloc.viewUserProfilePostStream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       switch (snapshot.data.status) {
@@ -196,12 +198,12 @@ class _UserProfileState extends State<ViewUserProfile> {
                                   // );
                                 },
                                 child: PostItemView(
-                                  post: snapshot.data.data.data[index],
+                                  post: snapshot.data.data[index].toPost(),
                                   isFromViewProfile: true,
                                 ),
                               );
                             },
-                            itemCount: snapshot.data.data.data.length,
+                            itemCount: snapshot.data.data.length,
                           );
                           break;
                         case Status.ERROR:

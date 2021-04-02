@@ -6,12 +6,12 @@ import 'package:fifafan/domain/comment_model.dart';
 
 class PostResponseClass {
   String _status;
-  List<Data> _data;
+  List<PostData> _data;
 
   String get status => _status;
-  List<Data> get data => _data;
+  List<PostData> get data => _data;
 
-  PostResponseClass({String status, List<Data> data}) {
+  PostResponseClass({String status, List<PostData> data}) {
     _status = status;
     _data = data;
   }
@@ -21,7 +21,7 @@ class PostResponseClass {
     if (json["data"] != null) {
       _data = [];
       json["data"].forEach((v) {
-        _data.add(Data.fromJson(v));
+        _data.add(PostData.fromJson(v));
       });
     }
   }
@@ -45,7 +45,7 @@ class PostResponseClass {
 /// likes : []
 /// createdAt : "2021-02-01T22:19:34.699Z"
 
-class Data {
+class PostData {
   String _uuid;
   String _userUuid;
   String _ownerName;
@@ -64,7 +64,7 @@ class Data {
   List<LikeObject> get likes => _likes;
   String get createdAt => _createdAt;
 
-  Data(
+  PostData(
       {String uuid,
       String userUuid,
       String ownerName,
@@ -83,7 +83,7 @@ class Data {
     _createdAt = createdAt;
   }
 
-  Data.fromJson(dynamic json) {
+  PostData.fromJson(dynamic json) {
     _uuid = json["uuid"];
     _userUuid = json["user_uuid"];
     _ownerName = json["owner_name"];

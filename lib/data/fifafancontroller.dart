@@ -23,7 +23,7 @@ class FifaController extends GetxController {
   var prefs = GetStorage();
   var token = '';
   var userToken = '';
-  var postListData = List<postres.Data>().obs;
+  var postListData = List<postres.PostData>().obs;
 
   @override
   void onInit() {
@@ -73,7 +73,7 @@ class FifaController extends GetxController {
       print('error is here');
       Get.back();
     } else {
-      List<postres.Data> listofPosts = List<postres.Data>();
+      List<postres.PostData> listofPosts = List<postres.PostData>();
       if (response['data'] == null) {
         listofPosts = [];
       } else {

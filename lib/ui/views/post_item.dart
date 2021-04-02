@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:fifafan/ui/screens/post_details.dart';
 
 class PostItemView extends StatefulWidget {
-  Data post;
+  PostData post;
   bool isFromViewProfile;
   PostItemView({this.post, this.isFromViewProfile});
 
@@ -19,7 +19,7 @@ class PostItemView extends StatefulWidget {
 class _PostItemViewState extends State<PostItemView> {
   FifaRepository fifaRepository = FifaRepository();
   int likes = 0;
-  Data post;
+  PostData post;
   @override
   void initState() {
     post = this.widget.post;
@@ -183,7 +183,7 @@ class _PostItemViewState extends State<PostItemView> {
     );
   }
 
-  gotoComment(Data post, BuildContext context) {
+  gotoComment(PostData post, BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PostDetails(post: post)),

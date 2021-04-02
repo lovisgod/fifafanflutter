@@ -6,7 +6,7 @@ import 'post_item.dart';
 import 'package:get/get.dart';
 
 class PostListView extends StatelessWidget {
-  final List<Data> posts;
+  final List<PostData> posts;
 
   PostListView({this.posts});
 
@@ -32,7 +32,7 @@ class PostListView extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: this.posts != null ? this.posts.length : 2,
               itemBuilder: (BuildContext context, int index) {
-                Data post = posts[index];
+                PostData post = posts[index];
                 return GestureDetector(
                   onTap: () {},
                   child: PostItemView(

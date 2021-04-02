@@ -1,6 +1,7 @@
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/domain/user_profile.dart';
+import 'package:fifafan/domain/view_user_response.dart';
 import 'package:fifafan/providers/podcastProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -28,9 +29,9 @@ class FifaRepository {
     return UserProfile.fromJson(response).data;
   }
 
-  Future<User> viewUser(String userid) async {
+  Future<ViewdUser> viewUser(String userid) async {
     final response = await provider.viewUser(userid);
-    return UserProfile.fromJson(response).data;
+    return ViewUserResponse.fromJson(response).data.user;
   }
 
   uploadPost(String name, String postBody) async {

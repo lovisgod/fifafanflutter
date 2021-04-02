@@ -7,7 +7,7 @@ import 'package:fifafan/domain/comment_model.dart';
 
 
 class PostDetails extends StatefulWidget {
-  Data post;
+  PostData post;
   PostDetails({this.post});
   @override
   _PostDetailsState createState() => _PostDetailsState();
