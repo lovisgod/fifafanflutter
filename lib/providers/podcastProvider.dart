@@ -49,11 +49,58 @@ class FifaProvider {
     return responseJson;
   }
 
+  Future viewUser(String userid) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.viewUser(userid);
+      responseJson = ResponseHandler().response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
   uploadPosts(String name, String postBody) async {
     var responseJson;
     try {
       final response = await ApiClient.uploadImage(name, postBody);
      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  likePost(String postId, String like) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.likePost(postId, like);
+      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  unlikePost(String postId) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.unlikePost(postId);
+      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  commentPost(String postId, String body) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.commentPost(postId, body);
+      // responseJson = ResponseHandler().response(response);
       responseJson = response;
     } on SocketException {
       throw FetchDataException('No Internet connection');

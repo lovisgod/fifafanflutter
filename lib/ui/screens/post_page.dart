@@ -70,49 +70,52 @@ class _PostPageState extends State<PostPage> {
 //                  ),
 //                ),
 //              ),
-              Container(
-                height: 400.0,
-                child: StreamBuilder<FifaResponseResponse<PostResponseClass>>(
-                  stream: _bloc.postListStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      switch (snapshot.data.status) {
-                        case Status.LOADING:
-                          return Loading(loadingMessage: snapshot.data.message);
-                          break;
-                        case Status.COMPLETED:
-                          return ListView.builder(
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //         PodcastPage(
-                                  //             snapshot.data.data.podcasts[index]
-                                  //         ),
-                                  //   ),
-                                  // );
-                                },
-                                child: PostItemView(
-                                  post: snapshot.data.data.data[index],
-                                ),
-                              );
-                            },
-                            itemCount: snapshot.data.data.data.length,
-                          );
-                          break;
-                        case Status.ERROR:
-                          return Error(
-                            errorMessage: snapshot.data.message,
-                            onRetryPressed: () => _bloc.getPosts(),
-                          );
-                          break;
+              Expanded(
+                child: Container(
+                  height: 400.0,
+                  child: StreamBuilder<FifaResponseResponse<PostResponseClass>>(
+                    stream: _bloc.postListStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        switch (snapshot.data.status) {
+                          case Status.LOADING:
+                            return Loading(loadingMessage: snapshot.data.message);
+                            break;
+                          case Status.COMPLETED:
+                            return ListView.builder(
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) =>
+                                    //         PodcastPage(
+                                    //             snapshot.data.data.podcasts[index]
+                                    //         ),
+                                    //   ),
+                                    // );
+                                  },
+                                  child: PostItemView(
+                                    post: snapshot.data.data.data[index],
+                                    isFromViewProfile: false,
+                                  ),
+                                );
+                              },
+                              itemCount: snapshot.data.data.data.length,
+                            );
+                            break;
+                          case Status.ERROR:
+                            return Error(
+                              errorMessage: snapshot.data.message,
+                              onRetryPressed: () => _bloc.getPosts(),
+                            );
+                            break;
+                        }
                       }
-                    }
-                    return Container();
-                  },
+                      return Container();
+                    },
+                  ),
                 ),
               ),
             ],

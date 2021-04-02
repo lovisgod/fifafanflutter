@@ -159,6 +159,7 @@ class _ProfileState extends State<Profile> {
                                 },
                                 child: PostItemView(
                                   post: snapshot.data.data.data[index],
+                                  isFromViewProfile: false,
                                 ),
                               );
                             },

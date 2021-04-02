@@ -28,10 +28,34 @@ class FifaRepository {
     return UserProfile.fromJson(response).data;
   }
 
+  Future<User> viewUser(String userid) async {
+    final response = await provider.viewUser(userid);
+    return UserProfile.fromJson(response).data;
+  }
+
   uploadPost(String name, String postBody) async {
     Get.dialog(Center(child: CircularProgressIndicator()),
         barrierDismissible: false);
     final response = await provider.uploadPosts(name, postBody);
+    debugPrint(response.toString());
+    return response;
+  }
+
+  likePost(String postId, String like) async {
+    final response = await provider.likePost(postId, like);
+    debugPrint(response.toString());
+    return response;
+  }
+
+  dislikePost(String postId) async {
+    final response = await provider.unlikePost(postId);
+    debugPrint(response.toString());
+    return response;
+  }
+
+
+  commentPost(String postId, String body) async {
+    final response = await provider.commentPost(postId, body);
     debugPrint(response.toString());
     return response;
   }

@@ -1,4 +1,5 @@
 import 'package:fifafan/domain/like_object.dart';
+import 'package:fifafan/domain/comment_model.dart';
 
 /// status : "success"
 /// data : [{"uuid":"5adf2f1a-75c6-4e0b-8ac4-c22fe8d58602","user_uuid":"a9940d02-7d58-4d09-925b-0c63cedbf6f9","owner_name":"Ayooluwa Olosunde","post":"This is a post","media":"https://res.cloudinary.com/psirius-eem/image/upload/v1612217974/media_mall/0822f534-5352-4589-9c32-cdfb27548cfc.jpg","comment":[],"likes":[],"createdAt":"2021-02-01T22:19:34.699Z"}]
@@ -50,7 +51,7 @@ class Data {
   String _ownerName;
   String _post;
   String _media;
-  List<dynamic> _comment;
+  List<Comment_model> _comment;
   List<LikeObject> _likes;
   String _createdAt;
 
@@ -59,7 +60,7 @@ class Data {
   String get ownerName => _ownerName;
   String get post => _post;
   String get media => _media;
-  List<dynamic> get comment => _comment;
+  List<Comment_model> get comment => _comment;
   List<LikeObject> get likes => _likes;
   String get createdAt => _createdAt;
 
@@ -69,7 +70,7 @@ class Data {
       String ownerName,
       String post,
       String media,
-      List<dynamic> comment,
+      List<Comment_model> comment,
       List<LikeObject> likes,
       String createdAt}) {
     _uuid = uuid;
@@ -90,7 +91,9 @@ class Data {
     _media = json["media"];
     if (json["comment"] != null) {
       _comment = [];
-      json["comment"].forEach((v) {});
+      json["comment"].forEach((v) {
+        _comment.add(Comment_model.fromJson(v));
+      });
     }
     if (json["likes"] != null) {
       _likes = [];

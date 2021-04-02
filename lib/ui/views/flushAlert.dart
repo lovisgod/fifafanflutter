@@ -24,7 +24,7 @@ class FlushAlert {
           ? duration
           : Duration(seconds: isDismisble ? 10 : _transDuration),
       message: message,
-      backgroundColor: !isError ? Theme.of(context).primaryColor : Colors.blue,
+      backgroundColor: !isError ?  Theme.of(context).primaryColor: Colors.red,
       mainButton: isDismisble
           ? FlatButton(
               onPressed: () {

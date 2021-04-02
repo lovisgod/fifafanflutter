@@ -37,6 +37,7 @@ class PostListView extends StatelessWidget {
                   onTap: () {},
                   child: PostItemView(
                     post: post,
+                    isFromViewProfile: false,
                   ),
                 );
               }),

@@ -1,15 +1,16 @@
 import 'package:fifafan/bloc/groupListBloc.dart';
 import 'package:fifafan/domain/user_profile.dart';
-import 'package:fifafan/ui/screens/createPost.dart';
 import 'package:flutter/material.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/ui/views/loading.dart';
 import 'package:fifafan/ui/views/error.dart';
 import 'package:fifafan/ui/views/post_item.dart';
 
 class ViewUserProfile extends StatefulWidget {
+  String userId;
+  String userName;
+  ViewUserProfile({this.userId, this.userName});
   @override
   _UserProfileState createState() => _UserProfileState();
 }
@@ -20,12 +21,12 @@ class _UserProfileState extends State<ViewUserProfile> {
   bool isLoadedPosts = false;
   @override
   Widget build(BuildContext context) {
-    _groupListBloc.getUser();
+    _groupListBloc.viewUser(this.widget.userId);
     _bloc.getUserPosts();
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'FIFAFANS',
+          '${this.widget.userName}',
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
@@ -37,7 +38,7 @@ class _UserProfileState extends State<ViewUserProfile> {
         child: Column(
           children: <Widget>[
             StreamBuilder<FifaResponseResponse<User>>(
-                stream: _groupListBloc.userProfileStream,
+                stream: _groupListBloc.viewUserProfileStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     switch (snapshot.data.status) {
@@ -115,6 +116,42 @@ class _UserProfileState extends State<ViewUserProfile> {
                                       ),
                                     ),
                                   ),
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 5.0),
+                                          child: GestureDetector(
+                                            onTap: () {},
+                                            child: Container(
+                                              width: 20.0,
+                                              height: 20.0,
+                                              child: Icon(
+                                                Icons.people_outline,
+                                                color: Colors.blue,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 3.0, right: 10.0),
+                                          child: Text(
+                                            '26',
+                                            style: TextStyle(
+                                                color: Colors.black87, fontWeight: FontWeight.normal),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 5.0),
+                                          child: Text(
+                                            'Follow',
+                                            style: TextStyle(
+                                                color: Colors.black87, fontWeight: FontWeight.normal),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
                                 ],
                               )
                             ],
@@ -124,7 +161,9 @@ class _UserProfileState extends State<ViewUserProfile> {
                       case Status.ERROR:
                         return Error(
                           errorMessage: snapshot.data.message,
-                          onRetryPressed: () => {},
+                          onRetryPressed: () => {
+                            _groupListBloc.viewUser(this.widget.userId)
+                          },
                         );
                         break;
                     }
@@ -158,6 +197,7 @@ class _UserProfileState extends State<ViewUserProfile> {
                                 },
                                 child: PostItemView(
                                   post: snapshot.data.data.data[index],
+                                  isFromViewProfile: true,
                                 ),
                               );
                             },

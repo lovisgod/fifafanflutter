@@ -187,7 +187,7 @@ class Login extends StatelessWidget {
         print(token);
         controller.saveToken(token);
 //        Get.toNamed('/homepage');
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Homepage()),
         );

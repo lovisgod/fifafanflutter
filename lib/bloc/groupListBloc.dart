@@ -14,6 +14,9 @@ class GroupListBloc {
 
   StreamController userProfileController = StreamController<FifaResponseResponse<User>>();
 
+  StreamController viewUserProfileController = StreamController<FifaResponseResponse<User>>();
+
+
   StreamSink<FifaResponseResponse<GroupListResponse>> get groupListSink =>
       groupListController.sink;
 
@@ -23,6 +26,10 @@ class GroupListBloc {
   StreamSink<FifaResponseResponse<User>> get userProfileSink => userProfileController.sink;
 
   Stream<FifaResponseResponse<User>> get userProfileStream => userProfileController.stream;
+
+  StreamSink<FifaResponseResponse<User>> get viewUserProfileSink => viewUserProfileController.sink;
+
+  Stream<FifaResponseResponse<User>> get viewUserProfileStream => viewUserProfileController.stream;
 
   GroupListBloc() {
 //    groupListController = StreamController<Response<GroupListResponse>>();
@@ -53,8 +60,20 @@ class GroupListBloc {
     }
   }
 
+  viewUser(String userid) async {
+    viewUserProfileSink.add(FifaResponseResponse.loading('Fetching user profile....'));
+    try {
+      User user = await _postListRepository.viewUser(userid);
+      viewUserProfileSink.add(FifaResponseResponse.completed(user));
+    } catch (e) {
+      viewUserProfileSink.add(FifaResponseResponse.error(e.toString()));
+      print(e);
+    }
+  }
+
   dispose() {
     groupListController?.close();
     userProfileController?.close();
+    viewUserProfileController?.close();
   }
 }

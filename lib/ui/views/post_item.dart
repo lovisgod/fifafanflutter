@@ -2,22 +2,33 @@ import 'package:fifafan/domain/post.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/ui/screens/viewUserProfile.dart';
 import 'package:fifafan/utils/timer.dart';
+import 'package:fifafan/repository/podcatListRepository.dart';
+import 'package:fifafan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
+import 'package:fifafan/ui/screens/post_details.dart';
 
 class PostItemView extends StatefulWidget {
   Data post;
-  PostItemView({this.post});
+  bool isFromViewProfile;
+  PostItemView({this.post, this.isFromViewProfile});
 
   @override
   _PostItemViewState createState() => _PostItemViewState();
 }
 
 class _PostItemViewState extends State<PostItemView> {
+  FifaRepository fifaRepository = FifaRepository();
   int likes = 0;
+  Data post;
+  @override
+  void initState() {
+    post = this.widget.post;
+    likes = post.likes.length;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    Data post = this.widget.post;
-    likes = post.likes.length;
+
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(
@@ -55,10 +66,12 @@ class _PostItemViewState extends State<PostItemView> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ViewUserProfile()),
-                        );
+                        if (!this.widget.isFromViewProfile) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ViewUserProfile(userId: this.widget.post.userUuid, userName: this.widget.post.ownerName,)),
+                          );
+                        }
                       },
                       child: Text(
                         post.ownerName.toString(),
@@ -109,7 +122,7 @@ class _PostItemViewState extends State<PostItemView> {
                   padding: EdgeInsets.only(left: 20.0, right: 10.0),
                   child: GestureDetector(
                     onTap: () {
-                      increaseCount();
+                      increaseCount(post.uuid);
                     },
                     child: Container(
                       width: 35.0,
@@ -125,7 +138,7 @@ class _PostItemViewState extends State<PostItemView> {
                   padding: EdgeInsets.only(left: 20.0, right: 10.0),
                   child: GestureDetector(
                     onTap: () {
-                      decreaseCount();
+                      decreaseCount(post.uuid);
                     },
                     child: Container(
                       width: 35.0,
@@ -140,7 +153,9 @@ class _PostItemViewState extends State<PostItemView> {
                 Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 10.0),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      gotoComment(post, context);
+                    },
                     child: Container(
                       width: 35.0,
                       height: 35.0,
@@ -168,17 +183,62 @@ class _PostItemViewState extends State<PostItemView> {
     );
   }
 
-  increaseCount() {
+  gotoComment(Data post, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PostDetails(post: post)),
+    );
+  }
+
+  increaseCount(String postId) async{
     debugPrint('getting here');
-    this.setState(() {
+    setState(() {
       likes += 1;
     });
+    var res = await fifaRepository.likePost(postId, 'liked');
+    if (res != 200) {
+      FlushAlert.show(
+        context: context,
+        message: 'operation not successful, please try again',
+        isError: true,
+      );
+      setState(() {
+        likes -= 1;
+      });
+    } else {
+      FlushAlert.show(
+        context: context,
+        message: 'Post Liked!!!',
+        isError: false,
+      );
+    }
+
     debugPrint("${this.likes}");
   }
 
-  decreaseCount() {
-    this.setState(() {
+  decreaseCount(String postId) async {
+    debugPrint('getting here');
+    setState(() {
       likes -= 1;
     });
+    var res = await fifaRepository.dislikePost(postId);
+    if (res != 200) {
+      FlushAlert.show(
+        context: context,
+        message: 'operation not successful, please try again',
+        isError: true,
+      );
+      setState(() {
+        likes += 1;
+      });
+    } else {
+      FlushAlert.show(
+        context: context,
+        message: 'Post Un-Liked!!!',
+        isError: false,
+      );
+    }
+
+    debugPrint("${this.likes}");
   }
 }
