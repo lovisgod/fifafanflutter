@@ -82,6 +82,10 @@ class GroupListBloc {
     }
   }
 
+  updateFollowed(ViewdUser user) {
+    viewUserProfileSink.add(FifaResponseResponse.completed(user, isPerformedOperation: true));
+  }
+
   dispose() {
     groupListController?.close();
     userProfileController?.close();

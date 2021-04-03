@@ -1,4 +1,4 @@
-import 'package:fifafan/bloc/groupListBloc.dart';
+import 'package:fifafan/bloc/fifauserBloc.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
 import 'package:fifafan/data/fifafancontroller.dart';
 import 'package:fifafan/domain/group_list_response.dart';

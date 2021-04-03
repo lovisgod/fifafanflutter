@@ -107,4 +107,28 @@ class FifaProvider {
     }
     return responseJson;
   }
+
+  followUser(String userId) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.followUser(userId);
+      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  unfollowUser(String userId) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.unfollowUser(userId);
+      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 }

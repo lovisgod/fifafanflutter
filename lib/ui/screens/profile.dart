@@ -1,4 +1,4 @@
-import 'package:fifafan/bloc/groupListBloc.dart';
+import 'package:fifafan/bloc/fifauserBloc.dart';
 import 'package:fifafan/domain/user_profile.dart';
 import 'package:fifafan/ui/screens/createPost.dart';
 import 'package:flutter/material.dart';

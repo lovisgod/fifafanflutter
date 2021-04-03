@@ -1,6 +1,8 @@
-import 'package:fifafan/bloc/groupListBloc.dart';
+import 'package:fifafan/bloc/fifauserBloc.dart';
 import 'package:fifafan/domain/user_profile.dart';
 import 'package:fifafan/domain/view_user_response.dart';
+import 'package:fifafan/repository/podcatListRepository.dart';
+import 'package:fifafan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
 import 'package:fifafan/domain/post_response_class.dart';
@@ -17,6 +19,7 @@ class ViewUserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<ViewUserProfile> {
+  FifaRepository fifaRepository = FifaRepository();
   PostListBloc _bloc = PostListBloc();
   GroupListBloc _groupListBloc = GroupListBloc();
   bool isLoadedPosts = false;
@@ -145,10 +148,18 @@ class _UserProfileState extends State<ViewUserProfile> {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(right: 5.0),
-                                          child: Text(
-                                            'Follow',
-                                            style: TextStyle(
-                                                color: Colors.black87, fontWeight: FontWeight.normal),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              follow(this.widget.userId,
+                                                  snapshot.data.data.following ? false : true,
+                                                  context,
+                                                  snapshot.data.data);
+                                            },
+                                            child: Text(
+                                              snapshot.data.data.following == true ? 'Un-Follow' : 'Follow',
+                                              style: TextStyle(
+                                                  color: Colors.black87, fontWeight: FontWeight.normal),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -229,5 +240,37 @@ class _UserProfileState extends State<ViewUserProfile> {
     setState(() {
       isLoadedPosts = true;
     });
+  }
+
+  void follow(String userId, bool follow, BuildContext context, ViewdUser user) async {
+    var res = 0;
+    print(follow);
+    if (follow) {
+      res = await fifaRepository.followUser(userId);
+    } else {
+     res = await fifaRepository.unfollowUser(userId);
+    }
+
+    if (res != 200) {
+      await FlushAlert.show(context: context, message: 'operation not successful', isError: true, isDismisble: true);
+    } else {
+       ViewdUser newuser = ViewdUser(
+         uuid: user.uuid,
+           name: user.name,
+           email: user.email,
+           phone: user.phone,
+           username: user.username,
+           address: user.address,
+           verified: user.verified,
+           role: user.role,
+           status: user.status,
+           club: user.club,
+           posts: user.posts,
+           profiles: user.profiles, following: follow
+       );
+      _groupListBloc.updateFollowed(newuser);
+      await FlushAlert.show(context: context, message: 'operation successful', isError: false, isDismisble: true);
+    }
+
   }
 }

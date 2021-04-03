@@ -89,4 +89,26 @@ class ApiClient {
     var res = await request.send();
     return res.statusCode;
   }
+
+  static  followUser(String userId) async {
+    var queryParameters = {
+      'user_uuid': userId
+    };
+    var uri = Uri.https(Endpoint.host, '${Endpoint.path}${Endpoint.followUser}', queryParameters);
+    print(uri);
+    var res =  await http.post(uri,
+        headers: {"Authorization": "Bearer ${getToken()}"});
+    return res.statusCode;
+  }
+
+  static  unfollowUser(String userId) async {
+    var queryParameters = {
+      'user_uuid': userId
+    };
+    var uri = Uri.https(Endpoint.host, '${Endpoint.path}${Endpoint.unfollowUser}', queryParameters);
+    print(uri);
+    var res =  await http.patch(uri,
+        headers: {"Authorization": "Bearer ${getToken()}"});
+    return res.statusCode;
+  }
 }

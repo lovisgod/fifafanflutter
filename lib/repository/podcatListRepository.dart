@@ -60,4 +60,16 @@ class FifaRepository {
     debugPrint(response.toString());
     return response;
   }
+
+  followUser(String userId) async {
+    final response = await provider.followUser(userId);
+    debugPrint(response.toString());
+    return response;
+  }
+
+  unfollowUser(String userId) async {
+    final response = await provider.unfollowUser(userId);
+    debugPrint(response.toString());
+    return response;
+  }
 }

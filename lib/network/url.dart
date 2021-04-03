@@ -15,4 +15,7 @@ class Endpoint {
   static String likePost = 'post/like-post';
   static String unlikePost = 'post/unlike-post';
   static String createPost = 'post/create-post';
+  static String followUser = 'user/follow-user';
+  static String unfollowUser = 'user/un-follow-user';
+
 }
