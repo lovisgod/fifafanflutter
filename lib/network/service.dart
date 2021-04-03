@@ -165,4 +165,52 @@ class FifaService {
       }
     }
   }
+
+  static dynamic refreshToken({
+    @required String email,
+    @required String token,
+  }) async {
+    var uri = Endpoint.refreshToken;
+    print(dio.options.baseUrl);
+
+    await dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (RequestOptions options) {
+        options.headers = {'Authorization' : token};
+        print(options.path);
+        return options;
+      },
+    ));
+
+    try {
+      Response response = await dio.get(uri, queryParameters: {
+        "email": email,
+        "token": token,
+      });
+
+      print(response.statusCode);
+      print(response);
+
+//      dynamic res = json.decode(response.data);
+//      print(res);
+
+      if (response == null) return ErrorType.generic;
+      if (response.statusCode == 404) return ErrorType.generic;
+      if (response.statusCode == 400) return ErrorType.invalid_credentials;
+      if (response.statusCode == 500) return ErrorType.generic;
+      if (response.statusCode == 401) return ErrorType.invalid_credentials;
+      if (response.statusCode == 200) return json.decode(response.data);
+
+      // }
+    } on DioError catch (exception) {
+      if (exception == null ||
+          exception.toString().contains('SocketException')) {
+        return ErrorType.network;
+      } else if (exception.type == DioErrorType.RECEIVE_TIMEOUT ||
+          exception.type == DioErrorType.CONNECT_TIMEOUT) {
+        return ErrorType.timeout;
+      } else {
+        return ErrorType.generic;
+      }
+    }
+  }
 }

@@ -186,6 +186,7 @@ class Login extends StatelessWidget {
         String token = res['data']['token'];
         print(token);
         controller.saveToken(token);
+        controller.saveEmail(controller.loginEmailTextController.text.toString());
 //        Get.toNamed('/homepage');
         Navigator.push(
           context,

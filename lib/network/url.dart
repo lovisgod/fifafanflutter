@@ -5,6 +5,7 @@ class Endpoint {
   static String path = "/v1.0/api/";
   //Auth
   static String login = "/auth/signin";
+  static String refreshToken = 'auth/refreshToken';
   static String register = 'auth/signup';
   static String getposts = 'post/list-posts';
   static String getUserposts = 'post/list-user-posts';

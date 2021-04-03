@@ -51,6 +51,12 @@ class FifaController extends GetxController {
         password: loginPasswordTextController.text.toString());
   }
 
+  refreshToken(String email, String token) async {
+    return FifaService.refreshToken(
+        email: email,
+        token: token);
+  }
+
   signUpApi() async {
     return FifaService.registerUser(
         email: signUpEmailTextController.text.toString(),
@@ -87,6 +93,11 @@ class FifaController extends GetxController {
   void saveToken(String incomingToken) {
     prefs.write('token', incomingToken);
     token = incomingToken;
+  }
+
+  void saveEmail(String email) {
+    print(email);
+    prefs.write('email', email);
   }
 
   String getToken() {
