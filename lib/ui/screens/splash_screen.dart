@@ -15,7 +15,7 @@ class FifaFanSplashScreen extends StatefulWidget {
 }
 
 class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
-  // final FifaController controller = Get.put(FifaController());
+  final FifaController controller = Get.put(FifaController());
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // handleRefresh(context);
+    handleRefresh(context);
     return Scaffold(
       body: Center(
         child: Text(
@@ -65,22 +65,22 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
     return email.toString();
   }
 
-  // handleRefresh(BuildContext context) async {
-  //   try {
-  //     var res = await controller.refreshToken(getEmail(), getToken());
-  //     if (res is ErrorType) {
-  //       FlushAlert.show(
-  //         context: context,
-  //         message: errorTypeToString(res),
-  //         isError: true,
-  //       );
-  //     } else {
-  //       String token = res['data']['token'];
-  //       print(token);
-  //       controller.saveToken(token);
-  //     }
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
+  handleRefresh(BuildContext context) async {
+    try {
+      var res = await controller.refreshToken(getEmail(), getToken());
+      if (res is ErrorType) {
+        FlushAlert.show(
+          context: context,
+          message: errorTypeToString(res),
+          isError: true,
+        );
+      } else {
+        String token = res['data']['token'];
+        print(token);
+        controller.saveToken(token);
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
 }

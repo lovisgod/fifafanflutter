@@ -23,10 +23,10 @@ class _StateGroupPage extends State<GroupsListPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CreateGroup()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => CreateGroup()),
+          // );
         },
         label: Text('Create Group'),
         icon: Icon(Icons.group_add, color: Colors.white,),
