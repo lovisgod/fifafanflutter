@@ -4,7 +4,7 @@ class Endpoint {
   static String host = "fifafans.herokuapp.com";
   static String path = "/v1.0/api/";
   //Auth
-  static String login = "/auth/signin";
+  static String login = "auth/signin";
   static String refreshToken = 'auth/refreshToken';
   static String register = 'auth/signup';
   static String getposts = 'post/list-posts';
@@ -20,5 +20,6 @@ class Endpoint {
   static String createPost = 'post/create-post';
   static String followUser = 'user/follow-user';
   static String unfollowUser = 'user/un-follow-user';
+  static String createGroup = 'room/create-room';
 
 }

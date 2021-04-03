@@ -47,7 +47,7 @@ class _PostPageState extends State<PostPage> {
                     break;
                 }
               }
-              return null;
+              return Container(height: 0, width: 0,);
             },
           ),
           SizedBox(
@@ -111,7 +111,7 @@ class _PostPageState extends State<PostPage> {
                             break;
                         }
                       }
-                      return Container();
+                      return Container(height: 0, width: 0,);
                     },
                   ),
                 ),

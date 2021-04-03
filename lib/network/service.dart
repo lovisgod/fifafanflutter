@@ -36,19 +36,21 @@ class FifaService {
     @required String email,
     @required String password,
   }) async {
+    print(email);
     var uri = Endpoint.login;
     print(dio.options.baseUrl);
 
     await dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options) {
         print(options.path);
+        options.contentType = 'application/json';
         return options;
       },
     ));
 
     try {
       Response response = await dio.post(uri, data: {
-        "email": email,
+        "email": email.toString(),
         "password": password,
       });
 

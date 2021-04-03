@@ -154,4 +154,16 @@ class FifaProvider {
     }
     return responseJson;
   }
+
+  createGroup(String name, String desc) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.createGroup(name, desc);
+      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 }

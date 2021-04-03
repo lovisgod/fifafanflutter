@@ -84,4 +84,12 @@ class FifaRepository {
     debugPrint(response.toString());
     return response;
   }
+
+  createGroup(String name, String desc) async {
+    Get.dialog(Center(child: CircularProgressIndicator()),
+        barrierDismissible: false);
+    final response = await provider.createGroup(name, desc);
+    debugPrint(response.toString());
+    return response;
+  }
 }

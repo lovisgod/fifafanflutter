@@ -93,7 +93,7 @@ class _PeopleState extends State<People> {
                             break;
                         }
                       }
-                      return null;
+                      return Container(height: 0, width: 0,);
                     }
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:fifafan/bloc/fifauserBloc.dart';
 import 'package:fifafan/domain/get_user_group_response.dart';
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/network/networking/ResponseHelper.dart';
+import 'package:fifafan/ui/screens/createGroupPage.dart';
 import 'package:fifafan/ui/screens/room_chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fifafan/ui/views/loading.dart';
@@ -20,6 +21,17 @@ class _StateGroupPage extends State<GroupsListPage> {
   Widget build(BuildContext context) {
     groupListBloc.getUserGroups();
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateGroup()),
+          );
+        },
+        label: Text('Create Group'),
+        icon: Icon(Icons.group_add, color: Colors.white,),
+        backgroundColor: Colors.pink,
+      ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
           child: Column(
@@ -74,7 +86,7 @@ class _StateGroupPage extends State<GroupsListPage> {
                                 color: Colors.grey,
                               );
                             },
-                            itemCount: 1,
+                            itemCount: snapshot.data.data.data.data.length,
                           );
                           break;
                         case Status.ERROR:
@@ -85,7 +97,7 @@ class _StateGroupPage extends State<GroupsListPage> {
                           break;
                       }
                     }
-                    return null;
+                    return Container(height: 0, width: 0,);
                   }
                 ),
               ),

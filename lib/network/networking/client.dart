@@ -28,10 +28,6 @@ class ApiClient {
   }
 
   static  commentPost(String postid, String body) async {
-    // var queryParameters = {
-    //   'post_uuid': postid,
-    //   'comment': body
-    // };
     var uri = Uri.https(Endpoint.host, '${Endpoint.path}${Endpoint.commentPost}');
     print(uri);
     var res =  await http.patch(uri,
@@ -42,6 +38,8 @@ class ApiClient {
         });
     return res.statusCode;
   }
+
+
 
   static  unlikePost(String postid) async {
     var queryParameters = {
@@ -119,6 +117,18 @@ class ApiClient {
     print(uri);
     var res =  await http.patch(uri,
         headers: {"Authorization": "Bearer ${getToken()}"});
+    return res.statusCode;
+  }
+
+  static  createGroup(String name, String desc) async {
+    var uri = Uri.https(Endpoint.host, '${Endpoint.path}${Endpoint.createGroup}');
+    print(uri);
+    var res =  await http.post(uri,
+        headers: {"Authorization": "Bearer ${getToken()}"},
+        body: {
+          "groupname": name,
+          "description": desc
+        });
     return res.statusCode;
   }
 }
