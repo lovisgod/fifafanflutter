@@ -47,18 +47,15 @@ class _PostItemViewState extends State<PostItemView> {
                   padding: EdgeInsets.only(left: 20.0, right: 10.0),
                   child: Container(
                     alignment: Alignment.center,
-                    width: 35.0,
-                    height: 35.0,
+                    width: 50.0,
+                    height: 50.0,
                     decoration: BoxDecoration(
-                        color: Colors.blue,
-                        border: Border.all(color: Colors.blue),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            post.media.toString(),
+                          ),
+                        ),
                         borderRadius: BorderRadius.circular(100.0)),
-                    child: Image.network(
-                      post.media.toString(),
-                      height: 35.0,
-                      width: 35.0,
-                      fit: BoxFit.cover,
-                    ),
                   ),
                 ),
                 Column(

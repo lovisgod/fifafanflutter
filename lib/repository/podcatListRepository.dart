@@ -1,4 +1,6 @@
+import 'package:fifafan/domain/get_user_group_response.dart';
 import 'package:fifafan/domain/group_list_response.dart';
+import 'package:fifafan/domain/list_follower_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/domain/user_profile.dart';
 import 'package:fifafan/domain/view_user_response.dart';
@@ -24,9 +26,19 @@ class FifaRepository {
     return GroupListResponse.fromJson(response);
   }
 
+  Future<GetUserGroupResponse> getUserGroups() async {
+    final response = await provider.getUserGroups();
+    return GetUserGroupResponse.fromJson(response);
+  }
+
   Future<User> getUser() async {
     final response = await provider.getUser();
     return UserProfile.fromJson(response).data;
+  }
+
+  Future<ListFollowerResponse> getFollower() async {
+    final response = await provider.getFollower();
+    return ListFollowerResponse.fromJson(response);
   }
 
   Future<ViewdUser> viewUser(String userid) async {

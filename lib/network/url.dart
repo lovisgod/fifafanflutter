@@ -9,7 +9,9 @@ class Endpoint {
   static String getposts = 'post/list-posts';
   static String getUserposts = 'post/list-user-posts';
   static String getGroups = 'room/list-rooms';
+  static String getUserGroups = 'room/list-user-rooms';
   static String getUser = 'auth/me';
+  static String listFollowers = 'user/list-followers';
   static String viewUser = 'user/view-user-details';
   static String commentPost = 'post/comment-post';
   static String likePost = 'post/like-post';

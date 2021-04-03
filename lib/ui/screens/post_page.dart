@@ -1,6 +1,5 @@
 import 'package:fifafan/bloc/fifauserBloc.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
-import 'package:fifafan/data/fifafancontroller.dart';
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/network/networking/ResponseHelper.dart';
@@ -9,8 +8,7 @@ import 'package:fifafan/ui/views/loading.dart';
 import 'package:fifafan/ui/views/error.dart';
 import 'package:fifafan/ui/views/post_item.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:fifafan/domain/post.dart';
+
 
 class PostPage extends StatefulWidget {
   @override

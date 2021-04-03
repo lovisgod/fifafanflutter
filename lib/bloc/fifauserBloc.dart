@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:fifafan/domain/get_user_group_response.dart';
 import 'package:fifafan/domain/group_list_response.dart';
+import 'package:fifafan/domain/list_follower_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/domain/user_profile.dart';
 import 'package:fifafan/domain/view_user_response.dart';
@@ -12,6 +14,11 @@ class GroupListBloc {
 
   StreamController groupListController =
       StreamController<FifaResponseResponse<GroupListResponse>>();
+
+  StreamController followerListController =
+  StreamController<FifaResponseResponse<ListFollowerResponse>>();
+
+  StreamController userGroupListController = StreamController<FifaResponseResponse<GetUserGroupResponse>>();
 
   StreamController userProfileController = StreamController<FifaResponseResponse<User>>();
 
@@ -26,6 +33,18 @@ class GroupListBloc {
 
   Stream<FifaResponseResponse<GroupListResponse>> get groupListStream =>
       groupListController.stream;
+
+  StreamSink<FifaResponseResponse<ListFollowerResponse>> get followerListSink =>
+      followerListController.sink;
+
+  Stream<FifaResponseResponse<ListFollowerResponse>> get followerListStream =>
+      followerListController.stream;
+
+  StreamSink<FifaResponseResponse<GetUserGroupResponse>> get userGroupListSink =>
+      userGroupListController.sink;
+
+  Stream<FifaResponseResponse<GetUserGroupResponse>> get userGroupListStream =>
+      userGroupListController.stream;
 
   StreamSink<FifaResponseResponse<User>> get userProfileSink => userProfileController.sink;
 
@@ -57,6 +76,18 @@ class GroupListBloc {
     }
   }
 
+
+  getUserGroups() async {
+    userGroupListSink.add(FifaResponseResponse.loading('Getting groups list.....'));
+    try {
+      GetUserGroupResponse groupListResponse = await _postListRepository.getUserGroups();
+      userGroupListSink.add(FifaResponseResponse.completed(groupListResponse));
+    } catch (e) {
+      userGroupListSink.add(FifaResponseResponse.error(e.toString()));
+      print(e);
+    }
+  }
+
   getUser() async {
     userProfileSink.add(FifaResponseResponse.loading('Fetching user profile....'));
     try {
@@ -64,6 +95,17 @@ class GroupListBloc {
       userProfileSink.add(FifaResponseResponse.completed(user));
     } catch (e) {
       userProfileSink.add(FifaResponseResponse.error(e.toString()));
+      print(e);
+    }
+  }
+
+  getFollowers() async {
+    followerListSink.add(FifaResponseResponse.loading('Fetching follower profile....'));
+    try {
+      ListFollowerResponse followerResponse = await _postListRepository.getFollower();
+      followerListSink.add(FifaResponseResponse.completed(followerResponse));
+    } catch (e) {
+      followerListSink.add(FifaResponseResponse.error(e.toString()));
       print(e);
     }
   }
@@ -91,5 +133,7 @@ class GroupListBloc {
     userProfileController?.close();
     viewUserProfileController?.close();
     viewUserProfilePostController?.close();
+    userGroupListController?.close();
+    followerListController?.close();
   }
 }

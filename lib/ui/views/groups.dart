@@ -1,5 +1,6 @@
 import 'package:fifafan/domain/groupModel.dart';
 import 'package:fifafan/domain/group_list_response.dart';
+import 'package:fifafan/ui/screens/room_chat_page.dart';
 import 'package:flutter/material.dart';
 
 class Groups extends StatelessWidget {
@@ -32,7 +33,12 @@ class Groups extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 GroupData group = groups[index];
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RoomChatPage(chatName: group.name, canChat: false, roomId: group.uuid,)),
+                    );
+                  },
                   child: Column(
                     children: <Widget>[
                       Container(
