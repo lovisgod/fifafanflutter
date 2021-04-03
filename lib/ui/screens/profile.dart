@@ -23,7 +23,8 @@ class _ProfileState extends State<Profile> {
     _groupListBloc.getUser();
     _bloc.getUserPosts();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'createPost',
         onPressed: () {
           // Add your onPressed code here!
           Navigator.push(
@@ -31,8 +32,9 @@ class _ProfileState extends State<Profile> {
             MaterialPageRoute(builder: (context) => CreatePost()),
           );
         },
-        child: Icon(Icons.create),
-        backgroundColor: Theme.of(context).primaryColor,
+        label: Text('Create Post',),
+        icon: Icon(Icons.comment_bank_rounded, color: Colors.white,),
+        backgroundColor: Colors.pink,
       ),
       body: Container(
         child: Column(

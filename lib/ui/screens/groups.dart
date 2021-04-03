@@ -22,11 +22,12 @@ class _StateGroupPage extends State<GroupsListPage> {
     groupListBloc.getUserGroups();
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'createGroup',
         onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => CreateGroup()),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateGroup()),
+          );
         },
         label: Text('Create Group'),
         icon: Icon(Icons.group_add, color: Colors.white,),
@@ -76,17 +77,22 @@ class _StateGroupPage extends State<GroupsListPage> {
                           return Loading(loadingMessage: snapshot.data.message);
                           break;
                         case Status.COMPLETED:
-                          return ListView.separated(
-                            itemBuilder: (BuildContext context, int index) {
-                              return _buildGroupItem(context, snapshot.data.data.data.data[index].chatRoom);
+                          return RefreshIndicator(
+                            onRefresh: () {
+                              return groupListBloc.getUserGroups();
                             },
-                            separatorBuilder: (BuildContext context, int index) {
-                              return Divider(
-                                height: 1.0,
-                                color: Colors.grey,
-                              );
-                            },
-                            itemCount: snapshot.data.data.data.data.length,
+                            child: ListView.separated(
+                              itemBuilder: (BuildContext context, int index) {
+                                return _buildGroupItem(context, snapshot.data.data.data.data[index].chatRoom);
+                              },
+                              separatorBuilder: (BuildContext context, int index) {
+                                return Divider(
+                                  height: 1.0,
+                                  color: Colors.grey,
+                                );
+                              },
+                              itemCount: snapshot.data.data.data.data.length,
+                            ),
                           );
                           break;
                         case Status.ERROR:

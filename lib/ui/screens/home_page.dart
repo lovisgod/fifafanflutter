@@ -1,7 +1,10 @@
+
+import 'package:fifafan/domain/menu_items.dart';
 import 'package:fifafan/ui/screens/people.dart';
 import 'package:fifafan/ui/screens/post_page.dart';
 import 'package:fifafan/ui/screens/profile.dart';
 import 'package:fifafan/ui/screens/groups.dart';
+import 'package:fifafan/ui/screens/updateProfile.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -17,9 +20,43 @@ class Homepage extends StatelessWidget {
               letterSpacing: 2.0),
         ),
         backgroundColor: Theme.of(context).primaryColor,
+        actions: <Widget>[
+          PopupMenuButton(
+            onSelected: (result) {
+              _performSelection(result, context);
+            },
+            padding: EdgeInsets.zero,
+            // initialValue: choices[_selection],
+            itemBuilder: (BuildContext context) {
+              return choices.map((String choice) {
+                return  PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );}
+              ).toList();
+            },
+          )
+        ],
       ),
       body: FifaFanStateFulWidget(),
     );
+  }
+
+  void _performSelection(String value, BuildContext context) {
+     if (value == "Update Profile") {
+       Navigator.push(
+         context,
+         MaterialPageRoute(builder: (context) => UpdateProfile()),
+       );
+     }
+     if (value == "Search a User") {
+
+     }
+     if (value == "Search Group") {
+
+     }  if (value == "Log-Out") {
+
+     }
   }
 }
 
