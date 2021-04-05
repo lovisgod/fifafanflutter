@@ -3,6 +3,7 @@ import 'package:fifafan/bloc/podcastListBloc.dart';
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/network/networking/ResponseHelper.dart';
+import 'package:fifafan/ui/screens/login.dart';
 import 'package:fifafan/ui/views/groups.dart';
 import 'package:fifafan/ui/views/loading.dart';
 import 'package:fifafan/ui/views/error.dart';
@@ -104,6 +105,12 @@ class _PostPageState extends State<PostPage> {
                             );
                             break;
                           case Status.ERROR:
+                            if (snapshot.data.message.contains('500')) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => Login())
+                              );
+                            }
                             return Error(
                               errorMessage: snapshot.data.message,
                               onRetryPressed: () => _bloc.getPosts(),

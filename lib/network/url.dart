@@ -21,5 +21,6 @@ class Endpoint {
   static String followUser = 'user/follow-user';
   static String unfollowUser = 'user/un-follow-user';
   static String createGroup = 'room/create-room';
+  static String updateProfile = 'auth/updateprofile';
 
 }

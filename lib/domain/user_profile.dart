@@ -1,3 +1,5 @@
+import 'package:fifafan/domain/user_profile_data.dart';
+
 /// status : "success"
 /// data : {"uuid":"a9940d02-7d58-4d09-925b-0c63cedbf6f9","name":"Ayooluwa Olosunde","email":"ayooluwa.olosunde@gmail.com","phone":8165660000,"username":"Lovisgod","address":null,"verified":false,"role":"user","status":"fan","club":"Arsenal","createdAt":"2021-01-22T21:18:59.331Z","updatedAt":"2021-01-22T21:18:59.331Z","profiles":[]}
 
@@ -48,28 +50,28 @@ class User {
   String _email;
   int _phone;
   String _username;
-  dynamic _address;
+  String _address;
   bool _verified;
   String _role;
   String _status;
   String _club;
   String _createdAt;
   String _updatedAt;
-  List<dynamic> _profiles;
+  List<UserProfileData> _profiles;
 
   String get uuid => _uuid;
   String get name => _name;
   String get email => _email;
   int get phone => _phone;
   String get username => _username;
-  dynamic get address => _address;
+  String get address => _address;
   bool get verified => _verified;
   String get role => _role;
   String get status => _status;
   String get club => _club;
   String get createdAt => _createdAt;
   String get updatedAt => _updatedAt;
-  List<dynamic> get profiles => _profiles;
+  List<UserProfileData> get profiles => _profiles;
 
   User(
       {String uuid,
@@ -77,14 +79,14 @@ class User {
       String email,
       int phone,
       String username,
-      dynamic address,
+      String address,
       bool verified,
       String role,
       String status,
       String club,
       String createdAt,
       String updatedAt,
-      List<dynamic> profiles}) {
+      List<UserProfileData> profiles}) {
     _uuid = uuid;
     _name = name;
     _email = email;
@@ -113,12 +115,12 @@ class User {
     _club = json["club"];
     _createdAt = json["createdAt"];
     _updatedAt = json["updatedAt"];
-//    if (json["profiles"] != null) {
-//      _profiles = [];
-//      json["profiles"].forEach((v) {
-//        _profiles.add(dynamic.fromJson(v));
-//      });
-//    }
+   if (json["profiles"] != null) {
+     _profiles = [];
+     json["profiles"].forEach((v) {
+       _profiles.add(UserProfileData.fromJson(v));
+     });
+   }
   }
 
   Map<String, dynamic> toJson() {

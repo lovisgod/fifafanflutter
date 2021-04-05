@@ -166,4 +166,34 @@ class FifaProvider {
     }
     return responseJson;
   }
+
+  updateProfile(String name,
+      String phone,
+      String address,
+      String club,
+      String gender,
+      String shortBio,
+      String favouriteQuotes,
+      String language,
+      String website,
+      {String filePath = ""}) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.updateProfile(name,
+          phone,
+          address,
+          club,
+          gender,
+          shortBio,
+          favouriteQuotes,
+          language,
+          website,
+          filePath: filePath);
+      // responseJson = ResponseHandler().response(response);
+      responseJson = response;
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 }

@@ -1,5 +1,10 @@
 import 'dart:io';
 
+import 'package:fifafan/bloc/fifauserBloc.dart';
+import 'package:fifafan/domain/user_profile.dart';
+import 'package:fifafan/network/networking/ResponseHelper.dart';
+import 'package:fifafan/repository/podcatListRepository.dart';
+import 'package:fifafan/ui/views/flushAlert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -11,6 +16,8 @@ class UpdateProfile extends StatefulWidget {
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
+  GroupListBloc _groupListBloc = GroupListBloc();
+  FifaRepository repo = FifaRepository();
   String imagePath = "";
   TextEditingController nameTextController = TextEditingController();
   TextEditingController phoneTextController = TextEditingController();
@@ -21,8 +28,31 @@ class _UpdateProfileState extends State<UpdateProfile> {
   TextEditingController favQuotesTextController = TextEditingController();
   TextEditingController languageTextController = TextEditingController();
   TextEditingController websiteTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // StreamBuilder<FifaResponseResponse<User>>(
+    //     stream: _groupListBloc.userProfileStream,
+    //     builder: (context, snapshot) {
+    //       if (snapshot != null) {
+    //         if (snapshot.data != null) {
+    //           getUserDataIfAvailable(snapshot.data.data);
+    //         }
+    //       }
+    //     }
+    // );
+    // _groupListBloc.userProfileStream.listen((event) {
+    //   if (event != null) {
+    //     if (event.data != null) {
+    //       getUserDataIfAvailable(event.data);
+    //     }
+    //   }
+    // });
+  }
   @override
   Widget build(BuildContext context) {
+    _groupListBloc.getUserGroups();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -244,7 +274,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-
+                      performUpdate();
                     },
                     child: Padding(
                         padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -276,6 +306,46 @@ class _UpdateProfileState extends State<UpdateProfile> {
     var file = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       this.imagePath = file.path;
-    });;
+    });
+  }
+
+  performUpdate() async {
+    var res = await repo.updateProfile(
+        nameTextController.text.toString(),
+        phoneTextController.text.toString(),
+        addressTextController.text.toString(),
+        clubTextController.text.toString(),
+        genderTextController.text.toString(),
+        shortBioTextController.text.toString(),
+        favQuotesTextController.text.toString(),
+        languageTextController.text.toString(),
+        websiteTextController.text.toString(),
+        filePath: imagePath);
+    if(res != 200) {
+      Navigator.pop(context);
+      await FlushAlert.show(context: context, message: 'Operation not successful',  isError: true, isDismisble: true);
+    } else {
+      Navigator.pop(context);
+      await FlushAlert.show(context: context, message: 'Operation successful',  isError: false, isDismisble: true);
+    }
+  }
+
+  getUserDataIfAvailable(User user){
+    print(user);
+    nameTextController.text = user.name;
+    phoneTextController.text = user.phone.isNaN ? "" : user.phone.toString();
+    clubTextController.text = user.club;
+    addressTextController.text = user.address.isNotEmpty? user.address.toString() : "";
+
+    if (user.profiles.isNotEmpty) {
+      genderTextController.text = user.profiles[0].gender.toString();
+      shortBioTextController.text = user.profiles[0].shortBio.toString();
+      favQuotesTextController.text = user.profiles[0].favoriteQuote.toString();
+      languageTextController.text = user.profiles[0].language.toString();
+
+      this.setState(() {
+        this.imagePath = user.profiles[0].profilePic.toString();
+      });
+    }
   }
 }

@@ -86,7 +86,8 @@ class _ProfileState extends State<Profile> {
                                     width: 100.0,
                                     fit: BoxFit.cover,
                                     image: NetworkImage(
-                                        "https://res.cloudinary.com/psirius-eem/image/upload/v1612957194/media_mall/185d9c23-2f18-422c-b197-ddf26f6e4bbd.jpg"),
+                                      getProfileurl(snapshot.data.data.profiles[0].profilePic)
+                                       ),
                                   ),
                                 ),
                               ),
@@ -191,5 +192,14 @@ class _ProfileState extends State<Profile> {
     setState(() {
       isLoadedPosts = true;
     });
+  }
+
+  String getProfileurl(String url) {
+    if (url != null) {
+    return  url.isNotEmpty ? url :
+      "https://res.cloudinary.com/psirius-eem/image/upload/v1612957194/media_mall/185d9c23-2f18-422c-b197-ddf26f6e4bbd.jpg";
+    } else {
+      return "https://res.cloudinary.com/psirius-eem/image/upload/v1612957194/media_mall/185d9c23-2f18-422c-b197-ddf26f6e4bbd.jpg";
+    }
   }
 }

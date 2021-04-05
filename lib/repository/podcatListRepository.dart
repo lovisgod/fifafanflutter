@@ -92,4 +92,30 @@ class FifaRepository {
     debugPrint(response.toString());
     return response;
   }
+
+  updateProfile(String name,
+      String phone,
+      String address,
+      String club,
+      String gender,
+      String shortBio,
+      String favouriteQuotes,
+      String language,
+      String website,
+     {String filePath = ""} ) async {
+    Get.dialog(Center(child: CircularProgressIndicator()),
+        barrierDismissible: false);
+    final response = await provider.updateProfile(name,
+        phone,
+        address,
+        club,
+        gender,
+        shortBio,
+        favouriteQuotes,
+        language,
+        website,
+        filePath: filePath);
+    debugPrint(response.toString());
+    return response;
+  }
 }
