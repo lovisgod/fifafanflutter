@@ -84,7 +84,7 @@ class _PostDetailsState extends State<PostDetails> {
                         separatorBuilder: (BuildContext context, int index) {
                           return Divider(
                             height: 1.0,
-                            color: Colors.grey,
+                            color: Colors.white,
                           );
                         },
                         itemCount: this.widget.post.comment.length,

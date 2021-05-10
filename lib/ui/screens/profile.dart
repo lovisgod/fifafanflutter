@@ -96,13 +96,15 @@ class _ProfileState extends State<Profile> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(
-                                    '${snapshot.data.data.name}',
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.black,
-                                        letterSpacing: 1.2),
-                                    textAlign: TextAlign.left,
+                                  Expanded(
+                                    child: Text(
+                                      '${snapshot.data.data.name}',
+                                      style: TextStyle(
+                                          fontSize: 15.0,
+                                          color: Colors.black,
+                                          letterSpacing: 1.0),
+                                      textAlign: TextAlign.left,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 10,

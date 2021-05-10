@@ -20,7 +20,7 @@ class GroupListBloc {
 
   StreamController userGroupListController = StreamController<FifaResponseResponse<GetUserGroupResponse>>();
 
-  StreamController userProfileController = StreamController<FifaResponseResponse<User>>();
+  StreamController userProfileController = StreamController<FifaResponseResponse<User>>.broadcast();
 
   StreamController viewUserProfileController = StreamController<FifaResponseResponse<ViewdUser>>();
 

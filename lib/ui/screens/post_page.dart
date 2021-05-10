@@ -9,6 +9,8 @@ import 'package:fifafan/ui/views/loading.dart';
 import 'package:fifafan/ui/views/error.dart';
 import 'package:fifafan/ui/views/post_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 
 class PostPage extends StatefulWidget {
@@ -106,10 +108,11 @@ class _PostPageState extends State<PostPage> {
                             break;
                           case Status.ERROR:
                             if (snapshot.data.message.contains('500')) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login())
-                              );
+                              // Navigator.pushReplacement(
+                              //   context,
+                              //   MaterialPageRoute(builder: (context) => Login())
+                              // );
+                              Get.off('/auth/login');
                             }
                             return Error(
                               errorMessage: snapshot.data.message,
