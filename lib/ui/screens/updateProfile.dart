@@ -35,12 +35,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   @override
   void initState() {
+    _groupListBloc.getUser();
+    _groupListBloc.userProfileStream.listen((event) {
+      getUserDataIfAvailable(event.data);
+    });
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    _groupListBloc.getUser();
-
 
     return Scaffold(
       appBar: AppBar(

@@ -67,9 +67,6 @@ class FifaController extends GetxController {
 
   /// Send message to group using socket**/
   sendMessage(IO.Socket socket, String message, String groupId) {
-    print("message_group => ${socket.id}");
-    print("message_group => ${groupId}");
-    print("message_group => ${message}");
     socket.emit("${groupId}-message", {
       "message": message,
       "group_id": groupId
@@ -78,16 +75,12 @@ class FifaController extends GetxController {
   
   /// Join group with socket
   joinGroup(IO.Socket socket, String groupId) {
-    print("join-group => ${socket.id}");
-    print("join-group => ${groupId}");
     socket.emit("join-room", {
       "group_uuid": groupId
     });
   }
 
   joinChat(IO.Socket socket, String chatId) {
-    print("join-chat => ${socket.id}");
-    print("join-chat => ${chatId}");
     socket.emit("join-chat", {
       "chat_uuid": chatId
     });

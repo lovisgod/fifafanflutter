@@ -1,3 +1,6 @@
+import 'package:fifafan/domain/user_profile_data.dart';
+import 'package:fifafan/ui/screens/profile.dart';
+
 /// status : "success"
 /// data : [{"uuid":"a3a4fa67-4e62-4b56-ab4e-f52ea92e3c7f","user_uuid":"1fb9b96d-a30f-47bd-a33d-06b97e71e251","follower_uuid":"c901ca67-b839-44ee-a689-bc2142b33b49","blocked":false,"user":{"uuid":"1fb9b96d-a30f-47bd-a33d-06b97e71e251","name":"Tochi refereer","email":"tuelodvpfer@gmail.com","username":"Tuvfdde","status":"coach","club":"Barca","phone":810855000000,"profiles":[]},"follower":{"uuid":"c901ca67-b839-44ee-a689-bc2142b33b49","name":"Moses Samuel","email":"ifedayodrealman@gmail.com","username":"mosamuel","status":"fan","club":"Arsenal","phone":8165660000,"profiles":[]}}]
 
@@ -125,7 +128,7 @@ class Follower {
   String get status => _status;
   String get club => _club;
   int get phone => _phone;
-  List<dynamic> get profiles => _profiles;
+  List<UserProfileData> get profiles => _profiles;
 
   Follower({
       String uuid, 
@@ -135,7 +138,7 @@ class Follower {
       String status, 
       String club, 
       int phone, 
-      List<dynamic> profiles}){
+      List<UserProfileData> profiles}){
     _uuid = uuid;
     _name = name;
     _email = email;
@@ -156,7 +159,9 @@ class Follower {
     _phone = json["phone"];
     if (json["profiles"] != null) {
       _profiles = [];
-      json["profiles"].forEach((v) {});
+      json["profiles"].forEach((v) {
+        _profiles.add(UserProfileData.fromJson(v));
+      });
     }
   }
 
@@ -194,7 +199,7 @@ class FolloweResponseUserData {
   String _status;
   String _club;
   int _phone;
-  List<dynamic> _profiles;
+  List<UserProfileData> _profiles;
 
   String get uuid => _uuid;
   String get name => _name;
@@ -203,7 +208,7 @@ class FolloweResponseUserData {
   String get status => _status;
   String get club => _club;
   int get phone => _phone;
-  List<dynamic> get profiles => _profiles;
+  List<UserProfileData> get profiles => _profiles;
 
   FolloweResponseUserData({
       String uuid, 
@@ -213,7 +218,7 @@ class FolloweResponseUserData {
       String status, 
       String club, 
       int phone, 
-      List<dynamic> profiles}){
+      List<UserProfileData> profiles}){
     _uuid = uuid;
     _name = name;
     _email = email;
@@ -234,7 +239,9 @@ class FolloweResponseUserData {
     _phone = json["phone"];
     if (json["profiles"] != null) {
       _profiles = [];
-      json["profiles"].forEach((v) {});
+      json["profiles"].forEach((v) {
+        _profiles.add(UserProfileData.fromJson(v));
+      });
     }
   }
 
