@@ -1,14 +1,14 @@
-import 'package:fifafan/bloc/fifauserBloc.dart';
-import 'package:fifafan/domain/user_profile.dart';
-import 'package:fifafan/domain/view_user_response.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/bloc/fifauserBloc.dart';
+import 'package:sportfan/domain/user_profile.dart';
+import 'package:sportfan/domain/view_user_response.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
-import 'package:fifafan/bloc/podcastListBloc.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/ui/views/error.dart';
-import 'package:fifafan/ui/views/post_item.dart';
+import 'package:sportfan/bloc/podcastListBloc.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/ui/views/error.dart';
+import 'package:sportfan/ui/views/post_item.dart';
 
 class ViewUserProfile extends StatefulWidget {
   String userId;

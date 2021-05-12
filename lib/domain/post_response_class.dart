@@ -1,5 +1,5 @@
-import 'package:fifafan/domain/like_object.dart';
-import 'package:fifafan/domain/comment_model.dart';
+import 'package:sportfan/domain/like_object.dart';
+import 'package:sportfan/domain/comment_model.dart';
 
 /// status : "success"
 /// data : [{"uuid":"5adf2f1a-75c6-4e0b-8ac4-c22fe8d58602","user_uuid":"a9940d02-7d58-4d09-925b-0c63cedbf6f9","owner_name":"Ayooluwa Olosunde","post":"This is a post","media":"https://res.cloudinary.com/psirius-eem/image/upload/v1612217974/media_mall/0822f534-5352-4589-9c32-cdfb27548cfc.jpg","comment":[],"likes":[],"createdAt":"2021-02-01T22:19:34.699Z"}]

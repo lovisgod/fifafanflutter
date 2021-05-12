@@ -1,8 +1,8 @@
-import 'package:fifafan/data/fifafancontroller.dart';
-import 'package:fifafan/network/error.dart';
-import 'package:fifafan/network/errorHelper.dart';
-import 'package:fifafan/ui/screens/home_page.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/data/fifafancontroller.dart';
+import 'package:sportfan/network/error.dart';
+import 'package:sportfan/network/errorHelper.dart';
+import 'package:sportfan/ui/screens/home_page.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class Login extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
                 child: Text(
-                  'FifaFans',
+                  'SPORTFANS',
                   style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,

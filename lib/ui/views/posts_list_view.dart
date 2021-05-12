@@ -1,6 +1,6 @@
-import 'package:fifafan/domain/groupModel.dart';
-import 'package:fifafan/domain/post.dart';
-import 'package:fifafan/domain/post_response_class.dart';
+import 'package:sportfan/domain/groupModel.dart';
+import 'package:sportfan/domain/post.dart';
+import 'package:sportfan/domain/post_response_class.dart';
 import 'package:flutter/material.dart';
 import 'post_item.dart';
 import 'package:get/get.dart';

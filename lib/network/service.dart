@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:fifafan/constants.dart';
+import 'package:sportfan/constants.dart';
 import 'error.dart';
 import 'url.dart';
 import 'package:get_storage/get_storage.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fifafan/ui/views/post_item.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/ui/views/comment_modal_bottom_sheet.dart';
-import 'package:fifafan/domain/comment_model.dart';
+import 'package:sportfan/ui/views/post_item.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/ui/views/comment_modal_bottom_sheet.dart';
+import 'package:sportfan/domain/comment_model.dart';
 
 
 

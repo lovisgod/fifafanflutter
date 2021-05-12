@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fifafan/network/networking/CustomException.dart';
+import 'package:sportfan/network/networking/CustomException.dart';
 import 'package:http/http.dart' as http;
 
 

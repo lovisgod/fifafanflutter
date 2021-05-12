@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:fifafan/domain/get_user_group_response.dart';
-import 'package:fifafan/domain/group_list_response.dart';
-import 'package:fifafan/domain/list_follower_response.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/domain/user_profile.dart';
-import 'package:fifafan/domain/view_user_response.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
+import 'package:sportfan/domain/get_user_group_response.dart';
+import 'package:sportfan/domain/group_list_response.dart';
+import 'package:sportfan/domain/list_follower_response.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/domain/user_profile.dart';
+import 'package:sportfan/domain/view_user_response.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
 import 'package:flutter/cupertino.dart';
 
 class GroupListBloc {

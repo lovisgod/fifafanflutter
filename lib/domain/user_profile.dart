@@ -1,4 +1,4 @@
-import 'package:fifafan/domain/user_profile_data.dart';
+import 'package:sportfan/domain/user_profile_data.dart';
 
 /// status : "success"
 /// data : {"uuid":"a9940d02-7d58-4d09-925b-0c63cedbf6f9","name":"Ayooluwa Olosunde","email":"ayooluwa.olosunde@gmail.com","phone":8165660000,"username":"Lovisgod","address":null,"verified":false,"role":"user","status":"fan","club":"Arsenal","createdAt":"2021-01-22T21:18:59.331Z","updatedAt":"2021-01-22T21:18:59.331Z","profiles":[]}

@@ -1,4 +1,4 @@
-import 'package:fifafan/network/url.dart';
+import 'package:sportfan/network/url.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_storage/get_storage.dart';

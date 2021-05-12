@@ -1,13 +1,13 @@
-import 'package:fifafan/bloc/fifauserBloc.dart';
-import 'package:fifafan/domain/user_profile.dart';
-import 'package:fifafan/ui/screens/createPost.dart';
+import 'package:sportfan/bloc/fifauserBloc.dart';
+import 'package:sportfan/domain/user_profile.dart';
+import 'package:sportfan/ui/screens/createPost.dart';
 import 'package:flutter/material.dart';
-import 'package:fifafan/bloc/podcastListBloc.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/ui/views/loading.dart';
-import 'package:fifafan/ui/views/error.dart';
-import 'package:fifafan/ui/views/post_item.dart';
+import 'package:sportfan/bloc/podcastListBloc.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/ui/views/loading.dart';
+import 'package:sportfan/ui/views/error.dart';
+import 'package:sportfan/ui/views/post_item.dart';
 
 class Profile extends StatefulWidget {
   @override

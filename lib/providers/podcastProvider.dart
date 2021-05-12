@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:fifafan/network/networking/CustomException.dart';
-import 'package:fifafan/network/networking/client.dart';
-import 'package:fifafan/network/networking/response.dart';
+import 'package:sportfan/network/networking/CustomException.dart';
+import 'package:sportfan/network/networking/client.dart';
+import 'package:sportfan/network/networking/response.dart';
 
 class FifaProvider {
   Future getPosts() async {

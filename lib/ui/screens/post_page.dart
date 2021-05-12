@@ -1,14 +1,14 @@
-import 'package:fifafan/bloc/fifauserBloc.dart';
-import 'package:fifafan/bloc/podcastListBloc.dart';
-import 'package:fifafan/data/fifafancontroller.dart';
-import 'package:fifafan/domain/group_list_response.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/ui/screens/login.dart';
-import 'package:fifafan/ui/views/groups.dart';
-import 'package:fifafan/ui/views/loading.dart';
-import 'package:fifafan/ui/views/error.dart';
-import 'package:fifafan/ui/views/post_item.dart';
+import 'package:sportfan/bloc/fifauserBloc.dart';
+import 'package:sportfan/bloc/podcastListBloc.dart';
+import 'package:sportfan/data/fifafancontroller.dart';
+import 'package:sportfan/domain/group_list_response.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/ui/screens/login.dart';
+import 'package:sportfan/ui/views/groups.dart';
+import 'package:sportfan/ui/views/loading.dart';
+import 'package:sportfan/ui/views/error.dart';
+import 'package:sportfan/ui/views/post_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

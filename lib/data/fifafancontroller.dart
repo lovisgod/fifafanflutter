@@ -1,18 +1,18 @@
 import 'dart:io';
 
-import 'package:fifafan/domain/PostList.dart';
-import 'package:fifafan/domain/personal_message_list_model.dart';
-import 'package:fifafan/domain/post.dart';
-import 'package:fifafan/domain/post_response_class.dart' as postres;
-import 'package:fifafan/domain/room_chat_list.dart';
-import 'package:fifafan/network/error.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
+import 'package:sportfan/domain/PostList.dart';
+import 'package:sportfan/domain/personal_message_list_model.dart';
+import 'package:sportfan/domain/post.dart';
+import 'package:sportfan/domain/post_response_class.dart' as postres;
+import 'package:sportfan/domain/room_chat_list.dart';
+import 'package:sportfan/network/error.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import './../network/service.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:fifafan/bloc/socketBloc.dart';
+import 'package:sportfan/bloc/socketBloc.dart';
 
 
 

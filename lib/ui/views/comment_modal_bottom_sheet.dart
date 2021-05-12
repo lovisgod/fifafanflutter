@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 
 
 openBottomSheet(BuildContext context, String postId) {

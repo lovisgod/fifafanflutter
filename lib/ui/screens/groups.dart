@@ -1,12 +1,12 @@
-import 'package:fifafan/bloc/fifauserBloc.dart';
-import 'package:fifafan/domain/get_user_group_response.dart';
-import 'package:fifafan/domain/group_list_response.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/ui/screens/createGroupPage.dart';
-import 'package:fifafan/ui/screens/room_chat_page.dart';
+import 'package:sportfan/bloc/fifauserBloc.dart';
+import 'package:sportfan/domain/get_user_group_response.dart';
+import 'package:sportfan/domain/group_list_response.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/ui/screens/createGroupPage.dart';
+import 'package:sportfan/ui/screens/room_chat_page.dart';
 import 'package:flutter/material.dart';
-import 'package:fifafan/ui/views/loading.dart';
-import 'package:fifafan/ui/views/error.dart';
+import 'package:sportfan/ui/views/loading.dart';
+import 'package:sportfan/ui/views/error.dart';
 
 class GroupsListPage extends StatefulWidget {
   @override

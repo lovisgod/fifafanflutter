@@ -1,4 +1,4 @@
-import 'package:fifafan/domain/post.dart';
+import 'package:sportfan/domain/post.dart';
 
 class PostList {
   final List<Post> posts;

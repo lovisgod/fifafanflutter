@@ -1,11 +1,11 @@
-import 'package:fifafan/domain/post.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/ui/screens/viewUserProfile.dart';
-import 'package:fifafan/utils/timer.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/domain/post.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/ui/screens/viewUserProfile.dart';
+import 'package:sportfan/utils/timer.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
-import 'package:fifafan/ui/screens/post_details.dart';
+import 'package:sportfan/ui/screens/post_details.dart';
 
 class PostItemView extends StatefulWidget {
   PostData post;

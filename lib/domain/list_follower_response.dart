@@ -1,5 +1,5 @@
-import 'package:fifafan/domain/user_profile_data.dart';
-import 'package:fifafan/ui/screens/profile.dart';
+import 'package:sportfan/domain/user_profile_data.dart';
+import 'package:sportfan/ui/screens/profile.dart';
 
 /// status : "success"
 /// data : [{"uuid":"a3a4fa67-4e62-4b56-ab4e-f52ea92e3c7f","user_uuid":"1fb9b96d-a30f-47bd-a33d-06b97e71e251","follower_uuid":"c901ca67-b839-44ee-a689-bc2142b33b49","blocked":false,"user":{"uuid":"1fb9b96d-a30f-47bd-a33d-06b97e71e251","name":"Tochi refereer","email":"tuelodvpfer@gmail.com","username":"Tuvfdde","status":"coach","club":"Barca","phone":810855000000,"profiles":[]},"follower":{"uuid":"c901ca67-b839-44ee-a689-bc2142b33b49","name":"Moses Samuel","email":"ifedayodrealman@gmail.com","username":"mosamuel","status":"fan","club":"Arsenal","phone":8165660000,"profiles":[]}}]

@@ -1,7 +1,7 @@
-import 'package:fifafan/ui/screens/home_page.dart';
-import 'package:fifafan/ui/screens/login.dart';
-import 'package:fifafan/ui/screens/sign_up.dart';
-import 'package:fifafan/ui/screens/splash_screen.dart';
+import 'package:sportfan/ui/screens/home_page.dart';
+import 'package:sportfan/ui/screens/login.dart';
+import 'package:sportfan/ui/screens/sign_up.dart';
+import 'package:sportfan/ui/screens/splash_screen.dart';
 import 'package:get/get.dart';
 
 class FifanRouter {

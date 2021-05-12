@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:fifafan/data/fifafancontroller.dart';
-import 'package:fifafan/network/error.dart';
-import 'package:fifafan/network/errorHelper.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/data/fifafancontroller.dart';
+import 'package:sportfan/network/error.dart';
+import 'package:sportfan/network/errorHelper.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
@@ -29,7 +29,7 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          "Fifafan",
+          "SPORTFANS",
           style: TextStyle(
               fontSize: 50.0, fontWeight: FontWeight.w600, color: Colors.blue),
         ),

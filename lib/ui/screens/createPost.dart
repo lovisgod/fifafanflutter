@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:fifafan/repository/podcatListRepository.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:image_picker/image_picker.dart';

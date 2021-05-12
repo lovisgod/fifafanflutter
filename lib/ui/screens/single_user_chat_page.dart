@@ -1,4 +1,4 @@
-import 'package:fifafan/data/fifafancontroller.dart';
+import 'package:sportfan/data/fifafancontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:get/get.dart';

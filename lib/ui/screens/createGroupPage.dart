@@ -1,5 +1,5 @@
-import 'package:fifafan/repository/podcatListRepository.dart';
-import 'package:fifafan/ui/views/flushAlert.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
+import 'package:sportfan/ui/views/flushAlert.dart';
 import 'package:flutter/material.dart';
 
 class CreateGroup extends StatefulWidget {
@@ -25,7 +25,7 @@ class _CreateGroupState extends State<CreateGroup> {
               Padding(
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
                 child: Text(
-                  'FifaFans',
+                  'SPORTFANS',
                   style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,

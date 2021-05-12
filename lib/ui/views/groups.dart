@@ -1,6 +1,6 @@
-import 'package:fifafan/domain/groupModel.dart';
-import 'package:fifafan/domain/group_list_response.dart';
-import 'package:fifafan/ui/screens/room_chat_page.dart';
+import 'package:sportfan/domain/groupModel.dart';
+import 'package:sportfan/domain/group_list_response.dart';
+import 'package:sportfan/ui/screens/room_chat_page.dart';
 import 'package:flutter/material.dart';
 
 class Groups extends StatelessWidget {

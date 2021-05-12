@@ -1,5 +1,5 @@
-import 'package:fifafan/bloc/socketBloc.dart';
-import 'package:fifafan/data/fifafancontroller.dart';
+import 'package:sportfan/bloc/socketBloc.dart';
+import 'package:sportfan/data/fifafancontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

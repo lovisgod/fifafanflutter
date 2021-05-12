@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:fifafan/domain/group_list_response.dart';
-import 'package:fifafan/domain/post_response_class.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
+import 'package:sportfan/domain/group_list_response.dart';
+import 'package:sportfan/domain/post_response_class.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
 import 'package:flutter/cupertino.dart';
 
 class PostListBloc {

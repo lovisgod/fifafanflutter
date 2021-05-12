@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:fifafan/domain/room_chat_list.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/domain/room_chat_list.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 

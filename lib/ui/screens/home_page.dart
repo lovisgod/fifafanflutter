@@ -1,10 +1,10 @@
 
-import 'package:fifafan/domain/menu_items.dart';
-import 'package:fifafan/ui/screens/people.dart';
-import 'package:fifafan/ui/screens/post_page.dart';
-import 'package:fifafan/ui/screens/profile.dart';
-import 'package:fifafan/ui/screens/groups.dart';
-import 'package:fifafan/ui/screens/updateProfile.dart';
+import 'package:sportfan/domain/menu_items.dart';
+import 'package:sportfan/ui/screens/people.dart';
+import 'package:sportfan/ui/screens/post_page.dart';
+import 'package:sportfan/ui/screens/profile.dart';
+import 'package:sportfan/ui/screens/groups.dart';
+import 'package:sportfan/ui/screens/updateProfile.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -14,7 +14,7 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          'FIFAFANS',
+          'SPORTFANS',
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,

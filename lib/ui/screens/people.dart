@@ -1,12 +1,12 @@
-import 'package:fifafan/bloc/fifauserBloc.dart';
-import 'package:fifafan/domain/list_follower_response.dart';
-import 'package:fifafan/network/networking/ResponseHelper.dart';
-import 'package:fifafan/repository/podcatListRepository.dart';
-import 'package:fifafan/ui/screens/single_user_chat_page.dart';
-import 'package:fifafan/ui/screens/viewUserProfile.dart';
+import 'package:sportfan/bloc/fifauserBloc.dart';
+import 'package:sportfan/domain/list_follower_response.dart';
+import 'package:sportfan/network/networking/ResponseHelper.dart';
+import 'package:sportfan/repository/podcatListRepository.dart';
+import 'package:sportfan/ui/screens/single_user_chat_page.dart';
+import 'package:sportfan/ui/screens/viewUserProfile.dart';
 import 'package:flutter/material.dart';
-import 'package:fifafan/ui/views/loading.dart';
-import 'package:fifafan/ui/views/error.dart';
+import 'package:sportfan/ui/views/loading.dart';
+import 'package:sportfan/ui/views/error.dart';
 
 class People extends StatefulWidget {
   @override

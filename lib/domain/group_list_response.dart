@@ -1,4 +1,4 @@
-import 'package:fifafan/domain/post_response_class.dart';
+import 'package:sportfan/domain/post_response_class.dart';
 
 /// status : "success"
 /// data : {"message":"Success","data":[{"uuid":"8c00929c-db4b-4530-91e3-d6b823d744d2","name":"Tatiana Roomie","description":"This is a master room, Falz the bad guy in the building","icon":null,"visibility":"private","createdAt":"2021-02-26T23:49:27.135Z","updatedAt":"2021-02-26T23:49:27.135Z"}]}
