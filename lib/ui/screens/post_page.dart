@@ -1,5 +1,6 @@
 import 'package:fifafan/bloc/fifauserBloc.dart';
 import 'package:fifafan/bloc/podcastListBloc.dart';
+import 'package:fifafan/data/fifafancontroller.dart';
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/domain/post_response_class.dart';
 import 'package:fifafan/network/networking/ResponseHelper.dart';
@@ -21,8 +22,10 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   PostListBloc _bloc = PostListBloc();
   GroupListBloc groupListBloc = GroupListBloc();
+  FifaController _controller = Get.find();
   @override
   Widget build(BuildContext context) {
+    _controller.setupSocket();
     _bloc = PostListBloc();
     _bloc.getPosts();
     groupListBloc.getGroups();
@@ -107,16 +110,9 @@ class _PostPageState extends State<PostPage> {
                             );
                             break;
                           case Status.ERROR:
-                            if (snapshot.data.message.contains('500')) {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   MaterialPageRoute(builder: (context) => Login())
-                              // );
-                              Get.off('/auth/login');
-                            }
                             return Error(
                               errorMessage: snapshot.data.message,
-                              onRetryPressed: () => _bloc.getPosts(),
+                              onRetryPressed: () => groupListBloc.getGroups(),
                             );
                             break;
                         }

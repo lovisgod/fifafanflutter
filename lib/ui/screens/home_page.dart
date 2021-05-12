@@ -109,7 +109,7 @@ class _FifaFanStateFulWidgetState extends State<FifaFanStateFulWidget> {
             title: Text('Profile'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.nature_people),
+            icon: Icon(Icons.wc),
             title: Text('People'),
           ),
           BottomNavigationBarItem(

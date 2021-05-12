@@ -26,27 +26,27 @@ class _PeopleState extends State<People> {
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
           child: Column(
             children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 20.0, right: 20.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.blueGrey,
-            ),
-            child: new TextField(
-              controller: search_view,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                disabledBorder: InputBorder.none,
-                hintText: "Search for a user",
-                hintStyle: new TextStyle(color: Colors.grey[300]),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          // Container(
+          //   width: MediaQuery.of(context).size.width,
+          //   margin: EdgeInsets.only(left: 20.0, right: 20.0),
+          //   decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(10.0),
+          //       color: Colors.blueGrey,
+          //   ),
+          //   child: new TextField(
+          //     controller: search_view,
+          //     decoration: InputDecoration(
+          //       border: InputBorder.none,
+          //       focusedBorder: InputBorder.none,
+          //       enabledBorder: InputBorder.none,
+          //       errorBorder: InputBorder.none,
+          //       disabledBorder: InputBorder.none,
+          //       hintText: "Search for a user",
+          //       hintStyle: new TextStyle(color: Colors.grey[300]),
+          //     ),
+          //     textAlign: TextAlign.center,
+          //   ),
+          // ),
               SizedBox(height: 10,),
               Text(
                 'List of friends',
@@ -163,6 +163,7 @@ class _PeopleState extends State<People> {
                         ChatWithFriend(
                           userId: userData.uuid,
                           chatName: follower.name,
+                          followerId: follower.uuid,
                           canChat: true,)
                     ),
                   );

@@ -196,4 +196,26 @@ class FifaProvider {
     }
     return responseJson;
   }
+
+  Future getGroupPost(String groupId) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.getGroupPosts(groupId);
+      responseJson = ResponseHandler().response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
+
+  Future getPersonalMessages(String follower_uuid) async {
+    var responseJson;
+    try {
+      final response = await ApiClient.getPersonalMessages(follower_uuid);
+      responseJson = ResponseHandler().response(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 }

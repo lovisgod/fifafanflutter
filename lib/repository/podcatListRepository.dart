@@ -1,7 +1,9 @@
 import 'package:fifafan/domain/get_user_group_response.dart';
 import 'package:fifafan/domain/group_list_response.dart';
 import 'package:fifafan/domain/list_follower_response.dart';
+import 'package:fifafan/domain/personal_message_list_model.dart';
 import 'package:fifafan/domain/post_response_class.dart';
+import 'package:fifafan/domain/room_chat_list.dart';
 import 'package:fifafan/domain/user_profile.dart';
 import 'package:fifafan/domain/view_user_response.dart';
 import 'package:fifafan/providers/podcastProvider.dart';
@@ -117,5 +119,14 @@ class FifaRepository {
         filePath: filePath);
     debugPrint(response.toString());
     return response;
+  }
+
+  Future<List<Chats>> getGroupPosts(String groupId) async {
+    final response = await provider.getGroupPost(groupId);
+    return Room_chat_list.fromJson(response).data.data.chats;
+  }
+  Future<List<PersonalChatData>> getPersonalMessages(String follower_uuid) async {
+    final response = await provider.getPersonalMessages(follower_uuid);
+    return Personal_message_list_model.fromJson(response).data;
   }
 }

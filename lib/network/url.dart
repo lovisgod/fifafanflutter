@@ -22,5 +22,7 @@ class Endpoint {
   static String unfollowUser = 'user/un-follow-user';
   static String createGroup = 'room/create-room';
   static String updateProfile = 'auth/updateprofile';
+  static String getGroupPost = '/room/chat';
+  static String getPersonalMessages = '/chat/personal-chats';
 
 }

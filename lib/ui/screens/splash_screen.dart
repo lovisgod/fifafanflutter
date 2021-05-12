@@ -25,7 +25,7 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    handleRefresh(context);
+    // handleRefresh(context);
     return Scaffold(
       body: Center(
         child: Text(
@@ -42,9 +42,9 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
     var token = controller.getToken();
     debugPrint(token);
     if (token.isNotEmpty) {
-      Get.offNamed('/homePage');
+      Get.toNamed('/homePage');
     } else {
-      Get.offNamed('/auth/login');
+      Get.toNamed('/auth/login');
     }
   }
 

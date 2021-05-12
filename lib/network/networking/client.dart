@@ -178,4 +178,26 @@ class ApiClient {
     var res = await request.send();
     return res.statusCode;
   }
+
+  static  getGroupPosts(String groupId) async {
+    var queryParameters = {
+      'group_uuid': groupId
+    };
+    var uri = Uri.https(Endpoint.host, '${Endpoint.path}${Endpoint.getGroupPost}', queryParameters);
+    print(uri);
+    var res =  await http.get(uri,
+        headers: {"Authorization": "Bearer ${getToken()}"});
+    return res;
+  }
+
+  static  getPersonalMessages(String follower_uuid) async {
+    var queryParameters = {
+      'secondP_uuid': follower_uuid
+    };
+    var uri = Uri.https(Endpoint.host, '${Endpoint.path}${Endpoint.getPersonalMessages}', queryParameters);
+    print(uri);
+    var res =  await http.get(uri,
+        headers: {"Authorization": "Bearer ${getToken()}"});
+    return res;
+  }
 }
