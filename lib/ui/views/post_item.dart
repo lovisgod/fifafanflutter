@@ -102,13 +102,16 @@ class _PostItemViewState extends State<PostItemView> {
             SizedBox(height: 15.0),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Image.network(
-                  post.media.toString(),
-                  height: 200.0,
-                  width: 300.0,
-                  fit: BoxFit.contain,
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image.network(
+                    post.media.toString(),
+                    height: 300.0,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),

@@ -30,10 +30,10 @@ class _CreatePostState extends State<CreatePost> {
               Container(
                 margin: EdgeInsets.only(top: 40, left: 20, right: 20),
                 width: MediaQuery.of(context).size.width,
-                height: 200.0,
+                height: 300.0,
                 child: Image.file(
                   File('${this.filename}'),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
               Container(
