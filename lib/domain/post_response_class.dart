@@ -51,6 +51,7 @@ class PostData {
   String _ownerName;
   String _post;
   String _media;
+  String profile_pic;
   List<Comment_model> _comment;
   List<LikeObject> _likes;
   String _createdAt;
@@ -60,6 +61,7 @@ class PostData {
   String get ownerName => _ownerName;
   String get post => _post;
   String get media => _media;
+  String get profilePic => profile_pic;
   List<Comment_model> get comment => _comment;
   List<LikeObject> get likes => _likes;
   String get createdAt => _createdAt;
@@ -70,6 +72,7 @@ class PostData {
       String ownerName,
       String post,
       String media,
+      String profilePic,
       List<Comment_model> comment,
       List<LikeObject> likes,
       String createdAt}) {
@@ -78,6 +81,7 @@ class PostData {
     _ownerName = ownerName;
     _post = post;
     _media = media;
+    profile_pic = profilePic;
     _comment = comment;
     _likes = likes;
     _createdAt = createdAt;
@@ -89,6 +93,7 @@ class PostData {
     _ownerName = json["owner_name"];
     _post = json["post"];
     _media = json["media"];
+    profile_pic = json["profile_pic"];
     if (json["comment"] != null) {
       _comment = [];
       json["comment"].forEach((v) {
@@ -111,6 +116,7 @@ class PostData {
     map["owner_name"] = _ownerName;
     map["post"] = _post;
     map["media"] = _media;
+    map["profile_pic"] = profile_pic;
     if (_comment != null) {
       map["comment"] = _comment.map((v) => v.toJson()).toList();
     }

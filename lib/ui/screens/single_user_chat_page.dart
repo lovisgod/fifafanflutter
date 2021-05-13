@@ -2,6 +2,7 @@ import 'package:sportfan/data/fifafancontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:get/get.dart';
+import 'package:sportfan/utils/timer.dart';
 
 class ChatWithFriend extends StatefulWidget {
   String chatName;
@@ -44,53 +45,14 @@ class _ChatWithFriendState extends State<ChatWithFriend> {
       ),
       body: Container(
         height: double.infinity,
+        padding: EdgeInsets.only(top: 10.0),
         child: Stack(
           children: [
-            Obx(() =>
-            new ListView(
-              children: <Widget>[
-                new Expanded(
-                  child: ListView.builder(
-                    itemCount: fifaController.personalMessageChats.length,
-                    shrinkWrap: true,
-                    padding: EdgeInsets.only(top: 10,bottom: 10),
-                    physics: NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index){
-                      return Container(
-                        padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
-                        child: Align(
-                          alignment: (Alignment.topLeft),
-                          child: Container(
-                            padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
-                            child: Align(
-                              alignment: (
-                                  fifaController.getUuid() == fifaController.personalMessageChats[index].senderUuid ? Alignment.topRight : Alignment.topLeft),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: (fifaController.getUuid() == fifaController.personalMessageChats[index].senderUuid ? Colors.blueAccent : Colors.grey),
-                                ),
-                                padding: EdgeInsets.all(16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    // Text('${fifaController.personalMessageChats[index].}', style: TextStyle(fontSize: 10, color:(
-                                    //     fifaController.getUuid() == fifaController.personalMessageChats[index].senderUuid ? Colors.white : Colors.grey
-                                    // ) ),),
-                                    Text('${fifaController.personalMessageChats[index].message}', style: TextStyle(fontSize: 15, color: Colors.black),),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: Obx(() =>
+              MyTimer().groupChats(fifaController.personalMessageChats, fifaController),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,

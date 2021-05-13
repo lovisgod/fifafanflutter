@@ -52,7 +52,7 @@ class _PostItemViewState extends State<PostItemView> {
                     decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            post.media.toString(),
+                            post.profilePic.toString() != "" ? post.profilePic.toString() : "",
                           ),
                         ),
                         borderRadius: BorderRadius.circular(100.0)),

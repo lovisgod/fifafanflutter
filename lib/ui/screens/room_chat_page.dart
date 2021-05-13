@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:sportfan/utils/timer.dart';
 
 
 class RoomChatPage extends StatefulWidget {
@@ -52,48 +53,14 @@ class _ChatWithRoomState extends State<RoomChatPage> {
       ),
       body: Container(
         height: double.infinity,
+        padding: EdgeInsets.only(top: 10),
         child: Stack(
           children: [
-            new ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                Obx(() =>
-                  new Expanded(
-                    child: ListView.builder(
-                      itemCount: fifaController.groupPostListData.length,
-                      shrinkWrap: true,
-                      padding: EdgeInsets.only(top: 10,bottom: 30),
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index){
-                        return Container(
-                          padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
-                          child: Align(
-                            alignment: (
-                                fifaController.getUuid() == fifaController.groupPostListData[index].senderUuid ? Alignment.topRight : Alignment.topLeft),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: (fifaController.getUuid() == fifaController.groupPostListData[index].senderUuid ? Colors.blueAccent : Colors.grey),
-                              ),
-                              padding: EdgeInsets.all(16),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text('${fifaController.groupPostListData[index].sendername}', style: TextStyle(fontSize: 10, color:(
-                                      fifaController.getUuid() == fifaController.groupPostListData[index].senderUuid ? Colors.white : Colors.grey
-                                  ) ),),
-                                  Text('${fifaController.groupPostListData[index].message}', style: TextStyle(fontSize: 15, color: Colors.black),),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: Obx(() =>
+                  MyTimer().groupRoomChats(fifaController.groupPostListData, fifaController)
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
