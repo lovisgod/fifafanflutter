@@ -41,7 +41,7 @@ class _FifaFanSplashScreenState extends State<FifaFanSplashScreen> {
     final FifaController controller = Get.put(FifaController());
     var token = controller.getToken();
     debugPrint(token);
-    if (token.isNotEmpty) {
+    if (token.toString() != "null" && token.isNotEmpty) {
       Get.toNamed('/homePage');
     } else {
       Get.toNamed('/auth/login');
